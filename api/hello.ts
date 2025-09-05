@@ -1,81 +1,78 @@
-import type { NextRequest, NextResponse } from 'next/server';
+// File: api/proxy.ts
 
-const SANITIZED_HEADERS = [
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+
+const SANITIZED_HEADERS = new Set([
   'host',
   'content-length',
   'cookie',
   'origin',
   'referer',
   'accept-encoding',
-];
+]);
 
-export const config = {
-  runtime: 'edge', // Ensure the Edge Runtime is used for better performance
-};
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // Add CORS headers first to handle preflight requests immediately
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', '*');
 
-export default async function handler(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const url = searchParams.get('url');
+  // Handle preflight (OPTIONS) request
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
+  }
 
-  if (!url) {
-    return NextResponse.json({ error: "Missing ?url=" }, { status: 400 });
+  const { url } = req.query;
+  if (!url || typeof url !== 'string') {
+    return res.status(400).json({ error: "Missing or invalid '?url=' query parameter" });
   }
 
   let targetUrl: URL;
   try {
     targetUrl = new URL(url);
   } catch {
-    return NextResponse.json({ error: "Invalid URL" }, { status: 400 });
+    return res.status(400).json({ error: 'Invalid URL' });
   }
 
   // Build sanitized headers
-  const headers = new Headers();
-  req.headers.forEach((value, key) => {
-    if (!SANITIZED_HEADERS.includes(key.toLowerCase())) {
-      headers.set(key, value);
+  const headers: Record<string, string> = {};
+  for (const [key, value] of Object.entries(req.headers)) {
+    if (value && !SANITIZED_HEADERS.has(key.toLowerCase())) {
+      headers[key] = Array.isArray(value) ? value.join(',') : value;
     }
-  });
-
-  // Minimal User-Agent
-  if (!headers.has('user-agent')) {
-    headers.set('user-agent', 'Mozilla/5.0');
   }
-  
+
+  // Ensure a minimal User-Agent is set
+  if (!headers['user-agent']) {
+    headers['user-agent'] = 'Mozilla/5.0';
+  }
+
   try {
     const response = await fetch(targetUrl.toString(), {
       method: req.method,
-      headers: headers,
-      body: req.method !== 'GET' && req.method !== 'HEAD' ? req.body : null,
+      headers,
+      body: req.method !== 'GET' && req.method !== 'HEAD' ? req.body : undefined,
       redirect: 'manual',
     });
 
-    // Create a new response with the proxied data
-    const newResponse = new NextResponse(response.body, {
-      status: response.status,
-      statusText: response.statusText,
-      headers: new Headers(),
-    });
-
-    // Copy original headers, excluding problematic ones
+    // Copy response headers
     response.headers.forEach((value, key) => {
       if (!['content-encoding', 'content-length', 'transfer-encoding', 'connection'].includes(key.toLowerCase())) {
-        newResponse.headers.set(key, value);
+        res.setHeader(key, value);
       }
     });
 
-    // Add CORS headers
-    newResponse.headers.set('Access-Control-Allow-Origin', '*');
-    newResponse.headers.set('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
-    newResponse.headers.set('Access-Control-Allow-Headers', '*');
+    // Read the response body as a buffer
+    const body = await response.arrayBuffer();
 
-    // Handle preflight requests
-    if (req.method === 'OPTIONS') {
-      return new NextResponse(null, { status: 204, headers: newResponse.headers });
-    }
+    // Set the content type from the original response or default
+    const contentType = response.headers.get('content-type') || 'application/octet-stream';
+    res.setHeader('Content-Type', contentType);
 
-    return newResponse;
-
-  } catch (err: any) {
-    return NextResponse.json({ error: "Proxy failed", details: err.message }, { status: 500 });
+    // Send the buffered body with the status code
+    return res.status(response.status).send(Buffer.from(body));
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred.';
+    return res.status(500).json({ error: 'Proxy failed', details: errorMessage });
   }
 }
