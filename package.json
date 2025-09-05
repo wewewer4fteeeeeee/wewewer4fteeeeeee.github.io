@@ -1,10 +1,17 @@
 {
+  "name": "unblocker",
+  "version": "1.0.0",
+  "private": true,
   "repository": "https://github.com/vercel/examples.git",
   "license": "MIT",
-  "private": true,
+  "main": "public/index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "tsc"
+  },
   "devDependencies": {
-    "@types/node": "^17.0.42",
-    "@vercel/node": "^2.9.6",
-    "typescript": "^4.7.3"
+    "@types/node": "^18.0.0",
+    "@vercel/node": "^3.0.0",
+    "typescript": "^5.1.0"
   }
 }
