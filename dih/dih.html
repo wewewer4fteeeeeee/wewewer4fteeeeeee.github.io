@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Unbl*cked</title>
+<style>
+/* --- Your CSS --- */
+html {
+  font-family: 'Nunito', sans-serif;
+  color: white;
+  background-color: rgb(20, 20, 20);
+  margin-left: 25px;
+  margin-right: 25px;
+}
+hr {
+  background-color: rgb(30,30,30);
+  border-color: transparent;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 50%;
+  height: 2px;
+}
+iframe {
+  width: 560px;
+  height: 315px;
+}
+.center {
+  text-align: center;
+}
+footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(20,20,20);
+}
+a {
+  color: white;
+  text-decoration: underline;
+}
+#video-holder:last-child {
+  margin-bottom: 5rem !important;
+}
+*::before, *::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+button, input {
+  border-radius: 4px;
+  outline: none;
+  border: 2px solid rgb(45, 45, 45);
+}
+button {
+  background-color: rgb(45, 45, 45);
+  width: 4rem;
+  color: white;
+  height: 1.3rem;
+}
+input {
+  height: 1.2rem;
+  outline: none;
+}
+input:focus, textarea:focus, select:focus{
+  outline: none;
+}
+button:active {
+  background-color: rgb(25, 25, 25);
+  color: rgb(224, 224, 224);
+}
+.space {
+  background-color: transparent;
+  border-color: transparent;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  height: 30px;
+}
+.video-result {
+  cursor: pointer;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  background: rgb(30,30,30);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.video-result img {
+  width: 120px;
+  height: 90px;
+  margin-right: 10px;
+}
+.video-result p {
+  margin: 0;
+  text-align: left;
+  font-size: 14px;
+  flex: 1;
+}
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 1.4rem;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 40px;
+  }
+  iframe {
+    width: 400px;
+    height: 225px;
+  }
+}
+</style>
+</head>
+<body>
+<h1 class="center">YouTube Unbl*cked</h1>
+<div class="center">
+  <h3>Insert YouTube Link or Search Term:</h3>
+  <input id="url" type="text" placeholder="Search or paste URL" required>
+  <button id="submit" class="submit-button">Watch</button>
+</div>
+<br>
+<div id="instructions" class="center">
+  <hr>
+  <h3>About</h3>
+  <p>Use to get around blocks, and watch YouTube without ads and (mostly) tracker free! Just paste in the link or type a search term and click Watch!</p>
+</div>
+
+<div id="video-holder-holder" class="center"></div>
+
+<hr class="space">
+
+<footer class="center">
+  <hr>
+  <p>Made by <a class="linelink" href="https://jcwyt.com" target="_blank">jcwyt.com</a><br>
+  Join our <a class="linelink" href="https://jcwyt.com/discord" target="_blank">Discord Server!</a></p>
+</footer>
+
+<script>
+// --- Multi-video search JavaScript ---
+const base = "https://www.youtube-nocookie.com/embed/";
+const end = "?wmode=transparent&iv_load_policy=3&autoplay=0&html5=1&showinfo=0&rel=0&modestbranding=1&playsinline=0&theme=light";
+
+const submit = document.getElementById('submit');
+const url = document.getElementById('url');
+const video_holder_holder = document.getElementById('video-holder-holder');
+
+// Replace with your YouTube Data API key
+const API_KEY = "AIzaSyCh3IGluWrj4eiDzQmf8jBCfZwESOUI06I";
+
+submit.onclick = async () => {
+    if(document.getElementById('instructions')) {
+        document.getElementById('instructions').remove();
+    }
+
+    let query = url.value.trim();
+    if(!query) return alert("Please enter a search term or YouTube URL");
+
+    let videos = [];
+
+    // Check if it's a direct YouTube URL
+    const strip_timestamps = /\?t=\d+/;
+    if(query.includes("youtube.com/watch") || query.includes("youtu.be")) {
+        query = query.replace(strip_timestamps, "");
+        let videoId = query.substr(query.length - 11, 11);
+        videos.push({id: videoId, title: "Your Video", thumbnail: ""});
+    } else {
+        // Search via API for multiple results
+        try {
+            const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(query)}&key=${API_KEY}`);
+            const data = await res.json();
+            if(data.items && data.items.length > 0) {
+                videos = data.items.map(item => ({
+                    id: item.id.videoId,
+                    title: item.snippet.title,
+                    thumbnail: item.snippet.thumbnails.default.url
+                }));
+            } else {
+                return alert("No videos found for that query");
+            }
+        } catch (err) {
+            console.error(err);
+            return alert("Error fetching videos");
+        }
+    }
+
+    // Clear previous results
+    video_holder_holder.innerHTML = "";
+
+    // Create video elements
+    videos.forEach(video => {
+        const container = document.createElement('div');
+        container.className = "video-result";
+
+        const img = document.createElement('img');
+        img.src = video.thumbnail;
+        img.alt = video.title;
+
+        const title = document.createElement('p');
+        title.textContent = video.title;
+
+        container.appendChild(img);
+        container.appendChild(title);
+
+        container.onclick = () => {
+            // Embed the clicked video
+            video_holder_holder.innerHTML = `
+                <div id="video-holder" class="center">
+                    <hr>
+                    <iframe src="${base + video.id + end}" frameborder="0" scrolling="no" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+                </div>
+            `;
+        };
+
+        video_holder_holder.appendChild(container);
+    });
+};
+</script>
+
+</body>
+</html>
