@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>YouTube Unbl*cked</title>
 <style>
-html {
+html, body {
   font-family: 'Nunito', sans-serif;
   color: white;
   background-color: rgb(20, 20, 20);
-  margin-left: 25px;
-  margin-right: 25px;
+  margin: 0;
+  padding: 25px;
 }
 hr {
   background-color: rgb(30,30,30);
@@ -19,10 +19,6 @@ hr {
   margin-bottom: 1rem;
   width: 50%;
   height: 2px;
-}
-iframe {
-  width: 560px;
-  height: 315px;
 }
 .center {
   text-align: center;
@@ -33,17 +29,11 @@ footer {
   right: 0;
   bottom: 0;
   background-color: rgb(20,20,20);
+  padding: 5px 0;
 }
 a {
   color: white;
   text-decoration: underline;
-}
-#video-holder:last-child {
-  margin-bottom: 5rem !important;
-}
-*::before, *::after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
 }
 button, input {
   border-radius: 4px;
@@ -52,29 +42,16 @@ button, input {
 }
 button {
   background-color: rgb(45, 45, 45);
-  width: 6rem;
   color: white;
   height: 1.5rem;
-  margin-left: 5px;
   cursor: pointer;
-}
-input {
-  height: 1.2rem;
-  outline: none;
-}
-input:focus, textarea:focus, select:focus{
-  outline: none;
+  margin-left: 5px;
 }
 button:active {
   background-color: rgb(25, 25, 25);
-  color: rgb(224, 224, 224);
 }
-.space {
-  background-color: transparent;
-  border-color: transparent;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  height: 30px;
+input {
+  height: 1.2rem;
 }
 .video-result {
   cursor: pointer;
@@ -96,16 +73,14 @@ button:active {
   font-size: 14px;
   flex: 1;
 }
+iframe {
+  width: 560px;
+  height: 315px;
+}
 @media screen and (max-width: 600px) {
-  html {
-    font-size: 1.4rem;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 40px;
-  }
   iframe {
-    width: 400px;
-    height: 225px;
+    width: 100%;
+    height: auto;
   }
 }
 </style>
@@ -115,26 +90,19 @@ button:active {
 
 <div class="center">
   <h3>Insert YouTube Link or Search Term:</h3>
-  <input id="url" type="text" placeholder="Search or paste URL" required>
-  <button id="submit" class="submit-button">Watch</button>
+  <input id="url" type="text" placeholder="Search or paste URL">
+  <button id="submit">Watch</button>
 </div>
-
-<br>
 
 <div id="instructions" class="center">
   <hr>
-  <h3>About</h3>
-  <p>Use to get around blocks, and watch YouTube without ads and (mostly) tracker free! Just paste in the link or type a search term and click Watch!</p>
+  <p>Paste a YouTube link or search term. Click a video to embed. Click "Fullscreen" to open in a new tab!</p>
 </div>
 
 <div id="video-holder-holder" class="center"></div>
 
-<hr class="space">
-
 <footer class="center">
   <hr>
-  <p>Made by <a class="linelink" href="https://jcwyt.com" target="_blank">jcwyt.com</a><br>
-  Join our <a class="linelink" href="https://jcwyt.com/discord" target="_blank">Discord Server!</a></p>
 </footer>
 
 <script>
@@ -143,24 +111,25 @@ const end = "?wmode=transparent&iv_load_policy=3&autoplay=0&html5=1&showinfo=0&r
 
 const submit = document.getElementById('submit');
 const url = document.getElementById('url');
-const video_holder_holder = document.getElementById('video-holder-holder');
-
+const holder = document.getElementById('video-holder-holder');
 const API_KEY = "AIzaSyCh3IGluWrj4eiDzQmf8jBCfZwESOUI06I";
 
 submit.onclick = async () => {
     if(document.getElementById('instructions')) document.getElementById('instructions').remove();
 
     let query = url.value.trim();
-    if(!query) return alert("Please enter a search term or YouTube URL");
+    if(!query) return alert("Enter a search term or YouTube URL");
 
     let videos = [];
     const strip_timestamps = /\?t=\d+/;
 
+    // Direct URL
     if(query.includes("youtube.com/watch") || query.includes("youtu.be")) {
         query = query.replace(strip_timestamps, "");
         let videoId = query.substr(query.length - 11, 11);
         videos.push({id: videoId, title: "Your Video", thumbnail: ""});
     } else {
+        // Search YouTube API
         try {
             const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(query)}&key=${API_KEY}`);
             const data = await res.json();
@@ -170,57 +139,48 @@ submit.onclick = async () => {
                     title: item.snippet.title,
                     thumbnail: item.snippet.thumbnails.default.url
                 }));
-            } else return alert("No videos found for that query");
-        } catch (err) {
+            } else return alert("No videos found.");
+        } catch(err) {
             console.error(err);
-            return alert("Error fetching videos");
+            return alert("Error fetching videos.");
         }
     }
 
-    video_holder_holder.innerHTML = "";
-
+    holder.innerHTML = "";
     videos.forEach(video => {
-        const container = document.createElement('div');
-        container.className = "video-result";
-
+        const div = document.createElement('div');
+        div.className = "video-result";
         const img = document.createElement('img');
         img.src = video.thumbnail;
-        img.alt = video.title;
-
         const title = document.createElement('p');
         title.textContent = video.title;
-
         const fsBtn = document.createElement('button');
         fsBtn.textContent = "Fullscreen";
 
-        container.appendChild(img);
-        container.appendChild(title);
-        container.appendChild(fsBtn);
+        div.appendChild(img);
+        div.appendChild(title);
+        div.appendChild(fsBtn);
 
-        const embedVideo = (autoFS=false) => {
-            video_holder_holder.innerHTML = `
+        const embed = () => {
+            holder.innerHTML = `
                 <div id="video-holder" class="center">
                     <hr>
-                    <div id="iframe-container" style="position:relative;">
-                        <iframe src="${base + video.id + end}" frameborder="0" scrolling="no" allowfullscreen webkitallowfullscreen mozallowfullscreen style="width:560px; height:315px;"></iframe>
-                        <button id="fullscreen-btn" style="position:absolute; top:5px; right:5px;">Fullscreen</button>
-                    </div>
+                    <iframe src="${base + video.id + end}" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen style="width:100%; max-width:560px; height:315px;"></iframe>
                 </div>
             `;
-            const containerDiv = document.getElementById('iframe-container');
-            const fsBtnInner = document.getElementById('fullscreen-btn');
-            fsBtnInner.onclick = () => {
-                if (containerDiv.requestFullscreen) containerDiv.requestFullscreen();
-                else if (containerDiv.webkitRequestFullscreen) containerDiv.webkitRequestFullscreen();
-                else if (containerDiv.msRequestFullscreen) containerDiv.msRequestFullscreen();
-            };
-            if(autoFS) fsBtnInner.click();
         };
 
-        container.onclick = () => embedVideo(false);
-        fsBtn.onclick = (e) => { e.stopPropagation(); embedVideo(true); };
+        const openFullscreenTab = () => {
+            const videoUrl = `${base + video.id}?autoplay=1&rel=0&modestbranding=1`;
+            window.open(videoUrl, "_blank", "width=1280,height=720");
+        };
 
-        video_holder_holder.appendChild(container);
+        div.onclick = embed;
+        fsBtn.onclick = (e) => { 
+            e.stopPropagation(); 
+            openFullscreenTab();
+        };
+        holder.appendChild(div);
     });
 };
 </script>
