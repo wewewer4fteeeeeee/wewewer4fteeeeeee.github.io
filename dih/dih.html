@@ -126,7 +126,6 @@ submit.onclick = async () => {
     div.appendChild(img);
     div.appendChild(title);
 
-    // Click opens new tab with custom player attempt
     div.onclick = () => {
       const newTab = window.open("about:blank", "_blank");
       newTab.document.write(`
@@ -136,7 +135,7 @@ submit.onclick = async () => {
         <style>
           body { margin:0; background:black; color:white; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; font-family:sans-serif; }
           #player { width:80vw; height:45vw; max-width:960px; max-height:540px; background:#000; }
-          #controls { margin-top:10px; display:none; width:80vw; max-width:960px; }
+          #controls { margin-top:10px; display:flex; width:80vw; max-width:960px; justify-content:center; }
           button { margin:0 5px; padding:6px 12px; background:#333; border:none; color:#fff; border-radius:5px; cursor:pointer; }
           button:hover { background:#555; }
           input[type=range] { width:100px; }
@@ -153,8 +152,9 @@ submit.onclick = async () => {
           </div>
 
           <script>
-          let player, loaded = false;
-          function onYouTubeIframeAPIReady() {
+          let player, loaded=false;
+
+          window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player('player', {
               videoId: "${video.id}",
               events: {
@@ -163,39 +163,41 @@ submit.onclick = async () => {
                 'onStateChange': updateProgress
               }
             });
-          }
+          };
+
           function onPlayerReady() {
             loaded = true;
             document.getElementById("controls").style.display = "flex";
             setInterval(syncProgress, 1000);
           }
+
           function fallbackToNoCookie() {
-            if (!loaded) {
+            if(!loaded){
               document.body.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/${video.id}" style="width:80vw;height:45vw;max-width:960px;max-height:540px;border:none;" allowfullscreen></iframe>';
             }
           }
+
           function syncProgress() {
-            if(player && player.getDuration) {
+            if(player && player.getDuration){
               let dur = player.getDuration();
               let cur = player.getCurrentTime();
               document.getElementById("progress").max = dur;
               document.getElementById("progress").value = cur;
             }
           }
-          function updateProgress(event) {
-            if(event.data == YT.PlayerState.ENDED) {
-              document.getElementById("progress").value = 0;
+
+          function updateProgress(event){
+            if(event.data==YT.PlayerState.ENDED){
+              document.getElementById("progress").value=0;
             }
           }
-          document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("progress").addEventListener("input", e => {
-              player.seekTo(e.target.value, true);
-            });
-            document.getElementById("volume").addEventListener("input", e => {
-              player.setVolume(e.target.value);
-            });
-          });
-          let tag=document.createElement('script'); tag.src="https://www.youtube.com/iframe_api"; document.body.appendChild(tag);
+
+          document.getElementById("progress").addEventListener("input", e => { player.seekTo(e.target.value, true); });
+          document.getElementById("volume").addEventListener("input", e => { player.setVolume(e.target.value); });
+
+          let tag=document.createElement('script'); 
+          tag.src="https://www.youtube.com/iframe_api"; 
+          document.body.appendChild(tag);
           </script>
         </body>
         </html>
