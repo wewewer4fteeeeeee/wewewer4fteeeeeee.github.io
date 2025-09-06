@@ -20,14 +20,21 @@ hr {
   width: 50%;
   height: 2px;
 }
-.center { text-align: center; }
+.center {
+  text-align: center;
+}
 footer {
   position: fixed;
-  left: 0; right: 0; bottom: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: rgb(20,20,20);
   padding: 5px 0;
 }
-a { color: white; text-decoration: underline; }
+a {
+  color: white;
+  text-decoration: underline;
+}
 button, input {
   border-radius: 4px;
   outline: none;
@@ -40,8 +47,12 @@ button {
   cursor: pointer;
   margin-left: 5px;
 }
-button:active { background-color: rgb(25, 25, 25); }
-input { height: 1.2rem; }
+button:active {
+  background-color: rgb(25, 25, 25);
+}
+input {
+  height: 1.2rem;
+}
 .video-result {
   cursor: pointer;
   margin-bottom: 15px;
@@ -52,11 +63,15 @@ input { height: 1.2rem; }
   border-radius: 5px;
 }
 .video-result img {
-  width: 120px; height: 90px; margin-right: 10px;
+  width: 120px;
+  height: 90px;
+  margin-right: 10px;
 }
 .video-result p {
-  margin: 0; text-align: left;
-  font-size: 14px; flex: 1;
+  margin: 0;
+  text-align: left;
+  font-size: 14px;
+  flex: 1;
 }
 </style>
 </head>
@@ -71,143 +86,91 @@ input { height: 1.2rem; }
 
 <div id="instructions" class="center">
   <hr>
-  <p>Click on any video to open a new tab with a custom player.</p>
+  <p>Click on any video to open a new tab with just that video embedded.</p>
 </div>
 
 <div id="video-holder-holder" class="center"></div>
 
-<footer class="center"><hr></footer>
+<footer class="center">
+  <hr>
+</footer>
 
 <script>
+const base = "https://www.youtube-nocookie.com/embed/";
+const end = "?wmode=transparent&iv_load_policy=3&autoplay=1&html5=1&showinfo=0&rel=0&modestbranding=1&playsinline=0&theme=light";
 const API_KEY = "AIzaSyCh3IGluWrj4eiDzQmf8jBCfZwESOUI06I";
+
 const submit = document.getElementById('submit');
 const urlInput = document.getElementById('url');
 const holder = document.getElementById('video-holder-holder');
 
 submit.onclick = async () => {
-  const query = urlInput.value.trim();
-  if (!query) return alert("Enter a YouTube link or search term");
-  if (document.getElementById('instructions')) document.getElementById('instructions').remove();
-  holder.innerHTML = "";
+    const query = urlInput.value.trim();
+    if(!query) return alert("Enter a YouTube link or search term");
+    if(document.getElementById('instructions')) document.getElementById('instructions').remove();
+    
+    holder.innerHTML = "";
 
-  let videos = [];
-  const strip_timestamps = /\?t=\d+/;
+    let videos = [];
+    const strip_timestamps = /\?t=\d+/;
 
-  // Direct URL
-  if (query.includes("youtube.com/watch") || query.includes("youtu.be")) {
-    const clean = query.replace(strip_timestamps, "");
-    const id = clean.substr(clean.length - 11, 11);
-    videos.push({id: id, title: "Your Video", thumbnail: ""});
-  } else {
-    // Search API
-    try {
-      const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(query)}&key=${API_KEY}`);
-      const data = await res.json();
-      if (data.items && data.items.length > 0) {
-        videos = data.items.map(item => ({
-          id: item.id.videoId,
-          title: item.snippet.title,
-          thumbnail: item.snippet.thumbnails.default.url
-        }));
-      } else return alert("No videos found.");
-    } catch(err) {
-      console.error(err);
-      return alert("Error fetching videos");
+    // Direct URL
+    if(query.includes("youtube.com/watch") || query.includes("youtu.be")) {
+        const clean = query.replace(strip_timestamps, "");
+        const id = clean.substr(clean.length - 11, 11);
+        videos.push({id: id, title: "Your Video", thumbnail: ""});
+    } else {
+        // Search API
+        try {
+            const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(query)}&key=${API_KEY}`);
+            const data = await res.json();
+            if(data.items && data.items.length > 0){
+                videos = data.items.map(item => ({
+                    id: item.id.videoId,
+                    title: item.snippet.title,
+                    thumbnail: item.snippet.thumbnails.default.url
+                }));
+            } else return alert("No videos found.");
+        } catch(err) {
+            console.error(err);
+            return alert("Error fetching videos");
+        }
     }
-  }
 
-  videos.forEach(video => {
-    const div = document.createElement('div');
-    div.className = "video-result";
-    const img = document.createElement('img');
-    img.src = video.thumbnail;
-    const title = document.createElement('p');
-    title.textContent = video.title;
-    div.appendChild(img);
-    div.appendChild(title);
+    videos.forEach(video => {
+        const div = document.createElement('div');
+        div.className = "video-result";
+        const img = document.createElement('img');
+        img.src = video.thumbnail;
+        const title = document.createElement('p');
+        title.textContent = video.title;
 
-    div.onclick = () => {
-      const newTab = window.open("about:blank", "_blank");
-      newTab.document.write(`
-        <html>
-        <head>
-        <title>${video.title}</title>
-        <style>
-          body { margin:0; background:black; color:white; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; font-family:sans-serif; }
-          #player { width:80vw; height:45vw; max-width:960px; max-height:540px; background:#000; }
-          #controls { margin-top:10px; display:flex; width:80vw; max-width:960px; justify-content:center; }
-          button { margin:0 5px; padding:6px 12px; background:#333; border:none; color:#fff; border-radius:5px; cursor:pointer; }
-          button:hover { background:#555; }
-          input[type=range] { width:100px; }
-          #progress { width:60%; }
-        </style>
-        </head>
-        <body>
-          <div id="player"></div>
-          <div id="controls">
-            <button onclick="player.playVideo()">Play</button>
-            <button onclick="player.pauseVideo()">Pause</button>
-            <input id="progress" type="range" min="0" max="100" value="0">
-            <input id="volume" type="range" min="0" max="100" value="100">
-          </div>
+        div.appendChild(img);
+        div.appendChild(title);
 
-          <script>
-          let player, loaded=false;
+        // Click opens a new about:blank tab with the video iframe
+        div.onclick = () => {
+            const newTab = window.open("about:blank", "_blank");
+            newTab.document.write(`
+                <html>
+                <head>
+                <title>${video.title}</title>
+                <style>
+                    html, body { margin:0; padding:0; background:black; display:flex; justify-content:center; align-items:center; height:100vh; }
+                    iframe { width:90vw; height:90vh; border:none; }
+                </style>
+                </head>
+                <body>
+                    <iframe src="${base + video.id + end}" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+                </body>
+                </html>
+            `);
+            newTab.document.close();
+        };
 
-          window.onYouTubeIframeAPIReady = function() {
-            player = new YT.Player('player', {
-              videoId: "${video.id}",
-              events: {
-                'onReady': onPlayerReady,
-                'onError': fallbackToNoCookie,
-                'onStateChange': updateProgress
-              }
-            });
-          };
-
-          function onPlayerReady() {
-            loaded = true;
-            document.getElementById("controls").style.display = "flex";
-            setInterval(syncProgress, 1000);
-          }
-
-          function fallbackToNoCookie() {
-            if(!loaded){
-              document.body.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/${video.id}" style="width:80vw;height:45vw;max-width:960px;max-height:540px;border:none;" allowfullscreen></iframe>';
-            }
-          }
-
-          function syncProgress() {
-            if(player && player.getDuration){
-              let dur = player.getDuration();
-              let cur = player.getCurrentTime();
-              document.getElementById("progress").max = dur;
-              document.getElementById("progress").value = cur;
-            }
-          }
-
-          function updateProgress(event){
-            if(event.data==YT.PlayerState.ENDED){
-              document.getElementById("progress").value=0;
-            }
-          }
-
-          document.getElementById("progress").addEventListener("input", e => { player.seekTo(e.target.value, true); });
-          document.getElementById("volume").addEventListener("input", e => { player.setVolume(e.target.value); });
-
-          let tag=document.createElement('script'); 
-          tag.src="https://www.youtube.com/iframe_api"; 
-          document.body.appendChild(tag);
-          </script>
-        </body>
-        </html>
-      `);
-      newTab.document.close();
-    };
-
-    holder.appendChild(div);
-  });
+        holder.appendChild(div);
+    });
 };
 </script>
 </body>
-</html>
+</html> 
