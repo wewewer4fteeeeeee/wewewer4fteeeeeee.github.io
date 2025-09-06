@@ -145,7 +145,6 @@ const submit = document.getElementById('submit');
 const url = document.getElementById('url');
 const video_holder_holder = document.getElementById('video-holder-holder');
 
-// Replace with your YouTube Data API key
 const API_KEY = "AIzaSyCh3IGluWrj4eiDzQmf8jBCfZwESOUI06I";
 
 submit.onclick = async () => {
@@ -157,13 +156,11 @@ submit.onclick = async () => {
     let videos = [];
     const strip_timestamps = /\?t=\d+/;
 
-    // Direct URL
     if(query.includes("youtube.com/watch") || query.includes("youtu.be")) {
         query = query.replace(strip_timestamps, "");
         let videoId = query.substr(query.length - 11, 11);
         videos.push({id: videoId, title: "Your Video", thumbnail: ""});
     } else {
-        // Search via YouTube API
         try {
             const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(query)}&key=${API_KEY}`);
             const data = await res.json();
@@ -180,7 +177,6 @@ submit.onclick = async () => {
         }
     }
 
-    // Clear previous
     video_holder_holder.innerHTML = "";
 
     videos.forEach(video => {
@@ -201,18 +197,24 @@ submit.onclick = async () => {
         container.appendChild(title);
         container.appendChild(fsBtn);
 
-        // Embed video on click
         const embedVideo = (autoFS=false) => {
             video_holder_holder.innerHTML = `
                 <div id="video-holder" class="center">
                     <hr>
-                    <iframe src="${base + video.id + end}" frameborder="0" scrolling="no" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
-                    <button id="fullscreen-btn">Fullscreen</button>
+                    <div id="iframe-container" style="position:relative;">
+                        <iframe src="${base + video.id + end}" frameborder="0" scrolling="no" allowfullscreen webkitallowfullscreen mozallowfullscreen style="width:560px; height:315px;"></iframe>
+                        <button id="fullscreen-btn" style="position:absolute; top:5px; right:5px;">Fullscreen</button>
+                    </div>
                 </div>
             `;
+            const containerDiv = document.getElementById('iframe-container');
             const fsBtnInner = document.getElementById('fullscreen-btn');
-            fsBtnInner.onclick = () => goFullScreen(fsBtnInner);
-            if(autoFS) goFullScreen(fsBtnInner);
+            fsBtnInner.onclick = () => {
+                if (containerDiv.requestFullscreen) containerDiv.requestFullscreen();
+                else if (containerDiv.webkitRequestFullscreen) containerDiv.webkitRequestFullscreen();
+                else if (containerDiv.msRequestFullscreen) containerDiv.msRequestFullscreen();
+            };
+            if(autoFS) fsBtnInner.click();
         };
 
         container.onclick = () => embedVideo(false);
@@ -221,13 +223,6 @@ submit.onclick = async () => {
         video_holder_holder.appendChild(container);
     });
 };
-
-function goFullScreen(btn) {
-    const iframe = btn.parentElement.querySelector('iframe');
-    if (iframe.requestFullscreen) iframe.requestFullscreen();
-    else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen();
-    else if (iframe.msRequestFullscreen) iframe.msRequestFullscreen();
-}
 </script>
 </body>
 </html>
