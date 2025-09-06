@@ -86,7 +86,7 @@ input {
 
 <div id="instructions" class="center">
   <hr>
-  <p>Click on any video to open it in a new tab (fullscreen style).</p>
+  <p>Click on any video to open a new tab with just that video embedded.</p>
 </div>
 
 <div id="video-holder-holder" class="center"></div>
@@ -97,6 +97,7 @@ input {
 
 <script>
 const base = "https://www.youtube-nocookie.com/embed/";
+const end = "?wmode=transparent&iv_load_policy=3&autoplay=1&html5=1&showinfo=0&rel=0&modestbranding=1&playsinline=0&theme=light";
 const API_KEY = "AIzaSyCh3IGluWrj4eiDzQmf8jBCfZwESOUI06I";
 
 const submit = document.getElementById('submit');
@@ -147,10 +148,24 @@ submit.onclick = async () => {
         div.appendChild(img);
         div.appendChild(title);
 
-        // Open new tab with just the video
+        // Click opens a new about:blank tab with the video iframe
         div.onclick = () => {
-            const videoUrl = `${base + video.id}?autoplay=1&rel=0&modestbranding=1`;
-            window.open(videoUrl, "_blank", "width=1280,height=720");
+            const newTab = window.open("about:blank", "_blank");
+            newTab.document.write(`
+                <html>
+                <head>
+                <title>${video.title}</title>
+                <style>
+                    html, body { margin:0; padding:0; background:black; display:flex; justify-content:center; align-items:center; height:100vh; }
+                    iframe { width:90vw; height:90vh; border:none; }
+                </style>
+                </head>
+                <body>
+                    <iframe src="${base + video.id + end}" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+                </body>
+                </html>
+            `);
+            newTab.document.close();
         };
 
         holder.appendChild(div);
