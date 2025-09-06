@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>YouTube Unbl*cked</title>
 <style>
-/* --- Your CSS --- */
 html {
   font-family: 'Nunito', sans-serif;
   color: white;
@@ -53,9 +52,10 @@ button, input {
 }
 button {
   background-color: rgb(45, 45, 45);
-  width: 4rem;
+  width: 6rem;
   color: white;
-  height: 1.3rem;
+  height: 1.5rem;
+  margin-left: 5px;
 }
 input {
   height: 1.2rem;
@@ -110,7 +110,7 @@ button:active {
 </style>
 </head>
 <body>
-<h1 class="center">YouTube Unbl*cked edited by exploding car</h1>
+<h1 class="center">YouTube Unbl*cked</h1>
 <div class="center">
   <h3>Insert YouTube Link or Search Term:</h3>
   <input id="url" type="text" placeholder="Search or paste URL" required>
@@ -129,12 +129,11 @@ button:active {
 
 <footer class="center">
   <hr>
-  <p>Made by <a class="linelink" href="Exploding Car" target="_blank">Exploding Car</a><br>
-  Join our <a class="linelink" href="https://discord.gg/mooncomp" target="_blank">Discord Server!</a></p>
+  <p>Made by <a class="linelink" href="https://jcwyt.com" target="_blank">jcwyt.com</a><br>
+  Join our <a class="linelink" href="https://jcwyt.com/discord" target="_blank">Discord Server!</a></p>
 </footer>
 
 <script>
-// --- Multi-video search JavaScript ---
 const base = "https://www.youtube-nocookie.com/embed/";
 const end = "?wmode=transparent&iv_load_policy=3&autoplay=0&html5=1&showinfo=0&rel=0&modestbranding=1&playsinline=0&theme=light";
 
@@ -154,15 +153,13 @@ submit.onclick = async () => {
     if(!query) return alert("Please enter a search term or YouTube URL");
 
     let videos = [];
-
-    // Check if it's a direct YouTube URL
     const strip_timestamps = /\?t=\d+/;
+
     if(query.includes("youtube.com/watch") || query.includes("youtu.be")) {
         query = query.replace(strip_timestamps, "");
         let videoId = query.substr(query.length - 11, 11);
         videos.push({id: videoId, title: "Your Video", thumbnail: ""});
     } else {
-        // Search via API for multiple results
         try {
             const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(query)}&key=${API_KEY}`);
             const data = await res.json();
@@ -181,10 +178,8 @@ submit.onclick = async () => {
         }
     }
 
-    // Clear previous results
     video_holder_holder.innerHTML = "";
 
-    // Create video elements
     videos.forEach(video => {
         const container = document.createElement('div');
         container.className = "video-result";
@@ -196,23 +191,44 @@ submit.onclick = async () => {
         const title = document.createElement('p');
         title.textContent = video.title;
 
+        const fsBtn = document.createElement('button');
+        fsBtn.textContent = "Fullscreen";
+
         container.appendChild(img);
         container.appendChild(title);
+        container.appendChild(fsBtn);
 
-        container.onclick = () => {
-            // Embed the clicked video
+        const embedVideo = () => {
             video_holder_holder.innerHTML = `
                 <div id="video-holder" class="center">
                     <hr>
                     <iframe src="${base + video.id + end}" frameborder="0" scrolling="no" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
+                    <button onclick="goFullScreen(this)">Fullscreen</button>
                 </div>
             `;
+        };
+
+        container.onclick = embedVideo;
+        fsBtn.onclick = (e) => {
+            e.stopPropagation();
+            embedVideo();
+            goFullScreen(fsBtn);
         };
 
         video_holder_holder.appendChild(container);
     });
 };
-</script>
 
+function goFullScreen(btn) {
+    const iframe = btn.parentElement.querySelector('iframe');
+    if (iframe.requestFullscreen) {
+        iframe.requestFullscreen();
+    } else if (iframe.webkitRequestFullscreen) {
+        iframe.webkitRequestFullscreen();
+    } else if (iframe.msRequestFullscreen) {
+        iframe.msRequestFullscreen();
+    }
+}
+</script>
 </body>
 </html>
