@@ -73,16 +73,6 @@ input {
   font-size: 14px;
   flex: 1;
 }
-iframe {
-  width: 560px;
-  height: 315px;
-}
-@media screen and (max-width: 600px) {
-  iframe {
-    width: 100%;
-    height: auto;
-  }
-}
 </style>
 </head>
 <body>
@@ -91,12 +81,12 @@ iframe {
 <div class="center">
   <h3>Insert YouTube Link or Search Term:</h3>
   <input id="url" type="text" placeholder="Search or paste URL">
-  <button id="submit">Watch</button>
+  <button id="submit">Search</button>
 </div>
 
 <div id="instructions" class="center">
   <hr>
-  <p>Paste a YouTube link or search term. Click a video to embed. Click "Fullscreen" to open in a new tab!</p>
+  <p>Click on any video to open it in a new tab (fullscreen style).</p>
 </div>
 
 <div id="video-holder-holder" class="center"></div>
@@ -107,33 +97,33 @@ iframe {
 
 <script>
 const base = "https://www.youtube-nocookie.com/embed/";
-const end = "?wmode=transparent&iv_load_policy=3&autoplay=0&html5=1&showinfo=0&rel=0&modestbranding=1&playsinline=0&theme=light";
-
-const submit = document.getElementById('submit');
-const url = document.getElementById('url');
-const holder = document.getElementById('video-holder-holder');
 const API_KEY = "AIzaSyCh3IGluWrj4eiDzQmf8jBCfZwESOUI06I";
 
-submit.onclick = async () => {
-    if(document.getElementById('instructions')) document.getElementById('instructions').remove();
+const submit = document.getElementById('submit');
+const urlInput = document.getElementById('url');
+const holder = document.getElementById('video-holder-holder');
 
-    let query = url.value.trim();
-    if(!query) return alert("Enter a search term or YouTube URL");
+submit.onclick = async () => {
+    const query = urlInput.value.trim();
+    if(!query) return alert("Enter a YouTube link or search term");
+    if(document.getElementById('instructions')) document.getElementById('instructions').remove();
+    
+    holder.innerHTML = "";
 
     let videos = [];
     const strip_timestamps = /\?t=\d+/;
 
     // Direct URL
     if(query.includes("youtube.com/watch") || query.includes("youtu.be")) {
-        query = query.replace(strip_timestamps, "");
-        let videoId = query.substr(query.length - 11, 11);
-        videos.push({id: videoId, title: "Your Video", thumbnail: ""});
+        const clean = query.replace(strip_timestamps, "");
+        const id = clean.substr(clean.length - 11, 11);
+        videos.push({id: id, title: "Your Video", thumbnail: ""});
     } else {
-        // Search YouTube API
+        // Search API
         try {
             const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(query)}&key=${API_KEY}`);
             const data = await res.json();
-            if(data.items && data.items.length > 0) {
+            if(data.items && data.items.length > 0){
                 videos = data.items.map(item => ({
                     id: item.id.videoId,
                     title: item.snippet.title,
@@ -142,11 +132,10 @@ submit.onclick = async () => {
             } else return alert("No videos found.");
         } catch(err) {
             console.error(err);
-            return alert("Error fetching videos.");
+            return alert("Error fetching videos");
         }
     }
 
-    holder.innerHTML = "";
     videos.forEach(video => {
         const div = document.createElement('div');
         div.className = "video-result";
@@ -154,32 +143,16 @@ submit.onclick = async () => {
         img.src = video.thumbnail;
         const title = document.createElement('p');
         title.textContent = video.title;
-        const fsBtn = document.createElement('button');
-        fsBtn.textContent = "Fullscreen";
 
         div.appendChild(img);
         div.appendChild(title);
-        div.appendChild(fsBtn);
 
-        const embed = () => {
-            holder.innerHTML = `
-                <div id="video-holder" class="center">
-                    <hr>
-                    <iframe src="${base + video.id + end}" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen style="width:100%; max-width:560px; height:315px;"></iframe>
-                </div>
-            `;
-        };
-
-        const openFullscreenTab = () => {
+        // Open new tab with just the video
+        div.onclick = () => {
             const videoUrl = `${base + video.id}?autoplay=1&rel=0&modestbranding=1`;
             window.open(videoUrl, "_blank", "width=1280,height=720");
         };
 
-        div.onclick = embed;
-        fsBtn.onclick = (e) => { 
-            e.stopPropagation(); 
-            openFullscreenTab();
-        };
         holder.appendChild(div);
     });
 };
