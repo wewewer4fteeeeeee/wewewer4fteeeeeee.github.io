@@ -56,6 +56,7 @@ button {
   color: white;
   height: 1.5rem;
   margin-left: 5px;
+  cursor: pointer;
 }
 input {
   height: 1.2rem;
@@ -111,12 +112,15 @@ button:active {
 </head>
 <body>
 <h1 class="center">YouTube Unbl*cked</h1>
+
 <div class="center">
   <h3>Insert YouTube Link or Search Term:</h3>
   <input id="url" type="text" placeholder="Search or paste URL" required>
   <button id="submit" class="submit-button">Watch</button>
 </div>
+
 <br>
+
 <div id="instructions" class="center">
   <hr>
   <h3>About</h3>
@@ -145,9 +149,7 @@ const video_holder_holder = document.getElementById('video-holder-holder');
 const API_KEY = "AIzaSyCh3IGluWrj4eiDzQmf8jBCfZwESOUI06I";
 
 submit.onclick = async () => {
-    if(document.getElementById('instructions')) {
-        document.getElementById('instructions').remove();
-    }
+    if(document.getElementById('instructions')) document.getElementById('instructions').remove();
 
     let query = url.value.trim();
     if(!query) return alert("Please enter a search term or YouTube URL");
@@ -155,11 +157,13 @@ submit.onclick = async () => {
     let videos = [];
     const strip_timestamps = /\?t=\d+/;
 
+    // Direct URL
     if(query.includes("youtube.com/watch") || query.includes("youtu.be")) {
         query = query.replace(strip_timestamps, "");
         let videoId = query.substr(query.length - 11, 11);
         videos.push({id: videoId, title: "Your Video", thumbnail: ""});
     } else {
+        // Search via YouTube API
         try {
             const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(query)}&key=${API_KEY}`);
             const data = await res.json();
@@ -169,15 +173,14 @@ submit.onclick = async () => {
                     title: item.snippet.title,
                     thumbnail: item.snippet.thumbnails.default.url
                 }));
-            } else {
-                return alert("No videos found for that query");
-            }
+            } else return alert("No videos found for that query");
         } catch (err) {
             console.error(err);
             return alert("Error fetching videos");
         }
     }
 
+    // Clear previous
     video_holder_holder.innerHTML = "";
 
     videos.forEach(video => {
@@ -198,22 +201,22 @@ submit.onclick = async () => {
         container.appendChild(title);
         container.appendChild(fsBtn);
 
-        const embedVideo = () => {
+        // Embed video on click
+        const embedVideo = (autoFS=false) => {
             video_holder_holder.innerHTML = `
                 <div id="video-holder" class="center">
                     <hr>
                     <iframe src="${base + video.id + end}" frameborder="0" scrolling="no" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>
-                    <button onclick="goFullScreen(this)">Fullscreen</button>
+                    <button id="fullscreen-btn">Fullscreen</button>
                 </div>
             `;
+            const fsBtnInner = document.getElementById('fullscreen-btn');
+            fsBtnInner.onclick = () => goFullScreen(fsBtnInner);
+            if(autoFS) goFullScreen(fsBtnInner);
         };
 
-        container.onclick = embedVideo;
-        fsBtn.onclick = (e) => {
-            e.stopPropagation();
-            embedVideo();
-            goFullScreen(fsBtn);
-        };
+        container.onclick = () => embedVideo(false);
+        fsBtn.onclick = (e) => { e.stopPropagation(); embedVideo(true); };
 
         video_holder_holder.appendChild(container);
     });
@@ -221,13 +224,9 @@ submit.onclick = async () => {
 
 function goFullScreen(btn) {
     const iframe = btn.parentElement.querySelector('iframe');
-    if (iframe.requestFullscreen) {
-        iframe.requestFullscreen();
-    } else if (iframe.webkitRequestFullscreen) {
-        iframe.webkitRequestFullscreen();
-    } else if (iframe.msRequestFullscreen) {
-        iframe.msRequestFullscreen();
-    }
+    if (iframe.requestFullscreen) iframe.requestFullscreen();
+    else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen();
+    else if (iframe.msRequestFullscreen) iframe.msRequestFullscreen();
 }
 </script>
 </body>
