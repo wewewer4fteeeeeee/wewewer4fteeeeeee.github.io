@@ -1,40 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unblocker Lolz</title>
-</head>
-<body>
-    <h1>Open URL in about:blank</h1>
-    <input type="url" id="urlInput" placeholder="Enter URL here">
-    <button onclick="openUrlInBlank()">Open in new tab</button>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Unblocker Lolz</title>
+    </head>
+    <body>
+        <h1>Open URL in new tab</h1>
+        <input type="url" id="urlInput" placeholder="Enter URL here">
+        <button onclick="openUrlDirectly()">Open in new tab</button>
 
-    <script>
-        function openUrlInBlank() {
-            const url = document.getElementById('urlInput').value;
-
-            if (url) {
-                const newWindow = window.open("about:blank");
-                if (newWindow) {
-                    // You can fetch the content of the URL and insert it here
-                    // For security reasons, directly embedding external content
-                    // into about:blank from another origin is restricted.
-                    // This example just shows a simple message in the new tab.
-                    newWindow.document.write(`
-                        <!DOCTYPE html>
-                        <html>
-                        <head>
-                            <title>Loading...</title>
-                    `);
-                    newWindow.document.close(); // Close the document stream
+        <script>
+            function openUrlDirectly() {
+                const url = document.getElementById('urlInput').value;
+                if (url) {
+                    // Open the URL directly in a new tab
+                    const newWindow = window.open(url, "_blank"); 
+                    if (!newWindow) {
+                        alert("Pop-up blocked! Please allow pop-ups for this site.");
+                    }
                 } else {
-                    alert("Pop-up blocked! Please allow pop-ups for this site.");
+                    alert("Please enter a URL.");
                 }
-            } else {
-                alert("Please enter a URL.");
             }
-        }
-    </script>
-</body>
-</html>
+        </script>
+    </body>
+    </html>
