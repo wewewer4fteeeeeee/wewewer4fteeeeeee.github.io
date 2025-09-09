@@ -56,24 +56,35 @@
       { name: "Youtube Unblocked Made By Me", url: "https://wewewer4fteeeeeee.github.io/dih/dih.html" },
     ];
 
-    const menu = document.getElementById("menu");
+buttons.forEach(btnData => {
+  const btn = document.createElement("button");
+  btn.textContent = btnData.name;
+  btn.onclick = () => {
+    const w = window.open("about:blank", "_blank");
+    if (!w) {
+      alert("Please allow pop-ups for this site.");
+      return;
+    }
 
-    buttons.forEach(btnData => {
-      const btn = document.createElement("button");
-      btn.textContent = btnData.name;
-      btn.onclick = () => {
-        const w = window.open("about:blank", "_blank");
-        w.document.title = btnData.name;
-        const embed = w.document.createElement("embed");
-        embed.src = btnData.url;
-        embed.width = "100%";
-        embed.height = "100%";
-        embed.setAttribute("allowfullscreen", "true");
-        w.document.body.style.margin = "0";
-        w.document.body.appendChild(embed);
-      };
-      menu.appendChild(btn);
+    w.document.title = btnData.name;
+    const embed = w.document.createElement("embed");
+    embed.src = btnData.url;
+    embed.width = "100%";
+    embed.height = "100%";
+    embed.setAttribute("allowfullscreen", "true");
+    w.document.body.style.margin = "0";
+    w.document.body.appendChild(embed);
+
+    // Add the confirmation prompt to the new window (w)
+    w.addEventListener('beforeunload', (event) => {
+      // Standard practice for compatibility across browsers
+      event.preventDefault();
+      // For older browsers
+      event.returnValue = ''; 
     });
+  };
+  menu.appendChild(btn);
+});
   </script>
 </body>
 </html>
