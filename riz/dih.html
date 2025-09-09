@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Opener</title>
+</head>
+<body>
+    <h1>Open URL in about:blank</h1>
+    <input type="url" id="urlInput" placeholder="Enter URL here">
+    <button onclick="openUrlInBlank()">Open in new tab</button>
+
+    <script>
+        function openUrlInBlank() {
+            const url = document.getElementById('urlInput').value;
+
+            if (url) {
+                const newWindow = window.open("about:blank");
+                if (newWindow) {
+                    // You can fetch the content of the URL and insert it here
+                    // For security reasons, directly embedding external content
+                    // into about:blank from another origin is restricted.
+                    // This example just shows a simple message in the new tab.
+                    newWindow.document.write(`
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+                            <title>Loading...</title>
+                        </head>
+                        <body>
+                            <h1>Attempting to open:</h1>
+                            <p>${url}</p>
+                            <p>Direct embedding of external content into about:blank is often restricted by browser security policies (CORS, X-Frame-Options).</p>
+                            <p>You might need a server-side proxy or specific permissions to embed content from other domains.</p>
+                            <iframe src="${url}" style="width:100%; height:500px; border:none;"></iframe>
+                        </body>
+                        </html>
+                    `);
+                    newWindow.document.close(); // Close the document stream
+                } else {
+                    alert("Pop-up blocked! Please allow pop-ups for this site.");
+                }
+            } else {
+                alert("Please enter a URL.");
+            }
+        }
+    </script>
+</body>
+</html>
