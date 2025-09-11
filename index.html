@@ -15,10 +15,18 @@
                 <title>Made By Exploding Xdddddd</title>
                 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
                 <style>
+                    /* Pulsating background animation */
+                    @keyframes background-pulse {
+                        0% { background-color: rgb(20, 20, 20); }
+                        50% { background-color: rgb(25, 25, 35); }
+                        100% { background-color: rgb(20, 20, 20); }
+                    }
+                    
                     body {
                         font-family: 'Nunito', sans-serif;
                         color: white;
                         background-color: rgb(20, 20, 20);
+                        animation: background-pulse 15s infinite ease-in-out;
                         margin: 0;
                         padding: 25px;
                         display: flex;
@@ -27,63 +35,83 @@
                         min-height: 100vh;
                         box-sizing: border-box;
                     }
+                    
                     #launcher-container {
                         width: 100%;
                         max-width: 900px;
                         padding: 25px;
                         box-sizing: border-box;
+                        background-color: rgba(30, 30, 30, 0.7);
+                        border-radius: 12px;
+                        backdrop-filter: blur(10px);
+                        border: 1px solid rgba(50, 50, 50, 0.5);
                     }
+                    
                     .menu-grid {
                         display: grid;
                         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                         gap: 15px;
                         padding: 15px 0;
                     }
+                    
                     button {
                         background-color: rgb(45, 45, 45);
                         color: white;
-                        border-radius: 4px;
+                        border-radius: 8px;
                         outline: none;
-                        border: 2px solid rgb(45, 45, 45);
+                        border: none;
                         padding: 20px;
                         font-size: 16px;
                         cursor: pointer;
-                        transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+                        transition: all 0.3s ease;
                         text-align: center;
                         word-wrap: break-word;
+                        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
                     }
+                    
                     button:hover {
-                        background-color: rgb(25, 25, 25);
-                        border-color: rgb(255, 255, 255, 0.2);
-                        transform: scale(1.05);
+                        background-color: rgb(60, 60, 60);
+                        transform: translateY(-5px);
+                        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.3);
                     }
+
+                    button:active {
+                        transform: translateY(0);
+                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+                    }
+                    
                     #tab-buttons {
                         display: flex;
                         gap: 5px;
                         justify-content: center;
                         margin-bottom: 20px;
                     }
+                    
                     .tab-button {
                         background-color: rgb(35, 35, 35);
                         color: white;
-                        border: 1px solid rgb(50, 50, 50);
+                        border: none;
                         padding: 10px 20px;
                         cursor: pointer;
-                        border-bottom: none;
-                        border-radius: 4px 4px 0 0;
-                        transition: background-color 0.2s;
+                        border-bottom: 2px solid transparent;
+                        transition: all 0.3s ease;
+                        font-weight: 700;
                     }
+                    
                     .tab-button:hover {
                         background-color: rgb(45, 45, 45);
                     }
+                    
                     .tab-button.active {
-                        background-color: rgb(20, 20, 20);
-                        border: 1px solid rgb(50, 50, 50);
-                        border-bottom: 1px solid transparent;
+                        background-color: transparent;
+                        border-bottom: 2px solid #5a94ff; /* Active tab color */
+                        color: #5a94ff;
                     }
+                    
                     .tab-content {
                         display: none;
                     }
+                    
                     .tab-content.active {
                         display: block;
                     }
