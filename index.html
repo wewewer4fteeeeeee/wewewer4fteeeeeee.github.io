@@ -7,7 +7,6 @@
 <body>
     <p>Opening the game launcher in a new window... Checking whitelist...</p>
     <script>
-        // Call backend to check if user IP is whitelisted
         fetch("https://explodingcar.pythonanywhere.com/check")
             .then(res => res.json())
             .then(data => {
@@ -80,11 +79,11 @@
                         alert("Please allow pop-ups for this site to open the game launcher.");
                     }
                 } else {
-                    document.body.innerHTML = "<h1 style='color:red'>You are not whitelisted</h1>";
+                    document.body.innerHTML = "<h1 style='color:red'>You are not whitelisted.</h1><p>Your IP: " + data.your_ip + "</p>";
                 }
             })
             .catch(err => {
-                document.body.innerHTML = "<h1 style='color:orange'>Error checking whitelist</h1>";
+                document.body.innerHTML = "<h1 style='color:orange'>Error checking whitelist.</h1><p>" + err + "</p>";
             });
     </script>
 </body>
