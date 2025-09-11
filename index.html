@@ -28,7 +28,7 @@
                         padding: 25px;
                         display: flex;
                         justify-content: center;
-                        align-items: flex-start; /* Align to the top */
+                        align-items: flex-start;
                         min-height: 100vh;
                         box-sizing: border-box;
                     }
@@ -39,7 +39,7 @@
                         padding: 25px;
                         box-sizing: border-box;
                     }
-
+                    
                     #menu {
                         display: grid;
                         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -136,35 +136,30 @@
                     const buttons = [
                         { name: "GunBlood", url: "https://cbgamesdev.github.io/chilibowlflash/gunblood.html", category: "Gun Games" },
                         { name: "geomatry dash", url: "https://cbgamesdev.github.io/chilibowlflash/geodash1.html", category: "Unblocked Stuff" },
-                        { name: "run 3", url: "https://cbgamesdev.github.io/chilibowlflash/run3/index.html", category: "Unblocked Stuff" },
+                        { name: "run 3", url: "https://cbgamesdev.github.io/chilibowlflash/run3/index.html", category: "Strat Games" },
                         { name: "Stick Man Goon", url: "https://stickmanhook2.org/game/stickman-hook/", category: "Stick Man Games" },
                         { name: "Vex", url: "https://wewewer4fteeeeeee.github.io/gammess/vex.html", category: "Stick Man Games" },
                         { name: "Block Blast", url: "https://cbgamesdev.github.io/chilibowlflash/blockblast/index.html", category: "Strat Games" },
                         { name: "Unblocker", url: "https://dihhhh.vercel.app/riz/dih.html", category: "Unblocked Stuff" },
                         { name: "MineCraft Tower Defense", url: "https://wewewer4fteeeeeee.github.io/gammess/minecraftdih.html", category: "Strat Games" },
-                        { name: "Learn To Fly 2", url: "https://wewewer4fteeeeeee.github.io/gammess/learn2goon.html", category: "Unblocked Stuff" },
-                        { name: "Portal Flash", url: "https://wewewer4fteeeeeee.github.io/gammess/Portal.html", category: "Unblocked Stuff" },
+                        { name: "Learn To Fly 2", url: "https://wewewer4fteeeeeee.github.io/gammess/learn2goon.html", category: "Strat Games" },
+                        { name: "Portal Flash", url: "https://wewewer4fteeeeeee.github.io/gammess/Portal.html", category: "Strat Games" },
                         { name: "Age Of War", url: "https://wewewer4fteeeeeee.github.io/gammess/ageofsum.html", category: "Strat Games" },
-                        { name: "Meat Boy", url: "https://wewewer4fteeeeeee.github.io/gammess/meatjerk.html", category: "Unblocked Stuff" },
+                        { name: "Meat Boy", url: "https://wewewer4fteeeeeee.github.io/gammess/meatjerk.html", category: "Strat Games" },
                         { name: "SpaceBar Clicker", url: "https://wewewer4fteeeeeee.github.io/gammess/spacebargooner.html", category: "Unblocked Stuff" },
-                        { name: "Slope", url: "https://wewewer4fteeeeeee.github.io/gammess/Slope.html", category: "Unblocked Stuff" },
+                        { name: "Slope", url: "https://wewewer4fteeeeeee.github.io/gammess/Slope.html", category: "Strat Games" },
                         { name: "Paper.Io 2", url: "https://ubv4l.neocities.org/projects/paperio2/", category: "Strat Games" },
                         { name: "Youtube unblocked Made By Me", url: "https://wewewer4fteeeeeee.github.io/dih/dih.html", category: "Unblocked Stuff" },
                     ];
 
                     function showCategory(category) {
-                        // Get all tab buttons and tab content elements
                         const tabButtons = document.querySelectorAll('.tab-button');
                         const tabContents = document.querySelectorAll('.tab-content');
 
-                        // Remove 'active' class from all buttons and content
                         tabButtons.forEach(btn => btn.classList.remove('active'));
                         tabContents.forEach(content => content.classList.remove('active'));
 
-                        // Add 'active' class to the clicked button
                         document.querySelector(\`.tab-button[onclick="showCategory('\${category}')"]\`).classList.add('active');
-
-                        // Show the selected tab content
                         document.getElementById(\`tab-\${category}\`).classList.add('active');
                     }
 
@@ -188,22 +183,22 @@
                                             alert("Please allow pop-ups for this site.");
                                             return;
                                         }
-                                        w.document.title = btnData.name;
-                                        w.document.body.style.margin = "0";
-                                        w.document.body.style.backgroundColor = "rgb(20, 20, 20)";
-                                        
-                                        const embed = w.document.createElement("embed");
-                                        embed.src = btnData.url;
-                                        embed.width = "100%";
-                                        embed.height = "100%";
-                                        embed.style.display = "block";
-                                        embed.setAttribute("allowfullscreen", "true");
-                                        
-                                        w.document.body.appendChild(embed);
-                                        w.addEventListener('beforeunload', (event) => {
-                                            event.preventDefault();
-                                            event.returnValue = '';
-                                        });
+                                        w.document.write(\`
+                                            <!DOCTYPE html>
+                                            <html>
+                                                <head>
+                                                    <title>\${btnData.name}</title>
+                                                    <style>
+                                                        body { margin: 0; background-color: rgb(20, 20, 20); }
+                                                        embed { display: block; }
+                                                    </style>
+                                                </head>
+                                                <body>
+                                                    <embed src="\${btnData.url}" width="100%" height="100%" allowfullscreen="true">
+                                                </body>
+                                            </html>
+                                        \`);
+                                        w.document.close();
                                     };
                                     menu.appendChild(btn);
                                 });
@@ -211,7 +206,6 @@
                         });
                     }
 
-                    // Call the createButtons function to populate the menus
                     window.onload = createButtons;
                 <\/script>
             </body>
