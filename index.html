@@ -128,6 +128,7 @@
                         <button class="tab-button" onclick="showCategory('Strat Games')">Strat Games</button>
                         <button class="tab-button" onclick="showCategory('Unblocked Stuff')">Unblocked Stuff</button>
                         <button class="tab-button" onclick="showCategory('Stick Man Games')">Stick Man Games</button>
+                        <button class="tab-button" onclick="showCategory('Random Ass Shit')">Random Stuff</button>
                     </div>
                     <div id="games-container">
                         <div id="tab-All" class="tab-content active">
@@ -150,19 +151,19 @@
                 <script>
                     const buttons = [
                         { name: "GunBlood", url: "https://cbgamesdev.github.io/chilibowlflash/gunblood.html", category: "Gun Games" },
-                        { name: "geomatry dash", url: "https://cbgamesdev.github.io/chilibowlflash/geomatrydash/geodash1.html", category: "Unblocked Stuff" },
-                        { name: "run 3", url: "https://cbgamesdev.github.io/chilibowlflash/run3/index.html", category: "Unblocked Stuff" },
+                        { name: "geomatry dash", url: "https://cbgamesdev.github.io/chilibowlflash/geomatrydash/geodash1.html", category: "Random Stuff" },
+                        { name: "run 3", url: "https://cbgamesdev.github.io/chilibowlflash/run3/index.html", category: "Random Stuff" },
                         { name: "Stick Man Goon", url: "https://stickmanhook2.org/game/stickman-hook/", category: "Stick Man Games" },
                         { name: "Vex", url: "https://wewewer4fteeeeeee.github.io/gammess/vex.html", category: "Stick Man Games" },
                         { name: "Block Blast", url: "https://cbgamesdev.github.io/chilibowlflash/blockblast/index.html", category: "Strat Games" },
                         { name: "Unblocker", url: "https://dihhhh.vercel.app/riz/dih.html", category: "Unblocked Stuff" },
-                        { name: "MineCraft Tower Defense", url: "https://wewewer4fteeeeeee.github.io/gammess/minecraftdih.html", category: "Strat Games" },
+                        { name: "MineCraft Tower Defense", url: "https://wewewer4fteeeeeee.github.io/gammess/minecraftdih.html", category: "Random Stuff" },
                         { name: "Learn To Fly 2", url: "https://wewewer4fteeeeeee.github.io/gammess/learn2goon.html", category: "Unblocked Stuff" },
-                        { name: "Portal Flash", url: "https://wewewer4fteeeeeee.github.io/gammess/Portal.html", category: "Unblocked Stuff" },
+                        { name: "Portal Flash", url: "https://wewewer4fteeeeeee.github.io/gammess/Portal.html", category: "Random Stuff" },
                         { name: "Age Of War", url: "https://wewewer4fteeeeeee.github.io/gammess/ageofsum.html", category: "Strat Games" },
-                        { name: "Meat Boy", url: "https://wewewer4fteeeeeee.github.io/gammess/meatjerk.html", category: "Unblocked Stuff" },
-                        { name: "SpaceBar Clicker", url: "https://wewewer4fteeeeeee.github.io/gammess/spacebargooner.html", category: "Unblocked Stuff" },
-                        { name: "Slope", url: "https://wewewer4fteeeeeee.github.io/gammess/Slope.html", category: "Unblocked Stuff" },
+                        { name: "Meat Boy", url: "https://wewewer4fteeeeeee.github.io/gammess/meatjerk.html", category: "Strat Games" },
+                        { name: "SpaceBar Clicker", url: "https://wewewer4fteeeeeee.github.io/gammess/spacebargooner.html", category: "Random Stuff" },
+                        { name: "Slope", url: "https://wewewer4fteeeeeee.github.io/gammess/Slope.html", category: "Strat Games" },
                         { name: "Paper.Io 2", url: "https://ubv4l.neocities.org/projects/paperio2/", category: "Strat Games" },
                         { name: "Youtube unblocked Made By Me", url: "https://wewewer4fteeeeeee.github.io/dih/dih.html", category: "Unblocked Stuff" },
                     ];
@@ -175,7 +176,7 @@
                         document.getElementById(\`tab-\${category}\`).classList.add('active');
                     }
                     function createButtons() {
-                        const categories = ["All", "Gun Games", "Strat Games", "Unblocked Stuff", "Stick Man Games"];
+                        const categories = ["All", "Gun Games", "Strat Games", "Unblocked Stuff", "Stick Man Games", "Random Stuff"];
                         categories.forEach(category => {
                             let gamesToDisplay = buttons;
                             if (category !== "All") {
