@@ -5,6 +5,82 @@
     <title>Launcher Page</title>
 </head>
 <body>
-    <p>Im working on a whitelist and I need to make it on another site wait till I make it</p>
+    <p>Opening the game launcher in a new window... Checking whitelist...</p>
+    <script>
+        const mainPageContent = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>Made By Exploding Xdddddd</title>
+                <style>
+                    body { font-family: Arial, sans-serif; background: #1e1e2f; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; }
+                    #menu { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; width: 80%; max-width: 900px; }
+                    button { background: #2b2b44; border: none; padding: 20px; border-radius: 12px; color: white; font-size: 16px; cursor: pointer; transition: transform 0.2s, background 0.2s; }
+                    button:hover { background: #3c3c5c; transform: scale(1.05); }
+                </style>
+            </head>
+            <body>
+                <div id="menu"></div>
+                <script>
+                    const buttons = [
+                        { name: "GunBlood", url: "https://cbgamesdev.github.io/chilibowlflash/gunblood.html" },
+                        { name: "geomatry dash", url: "https://cbgamesdev.github.io/chilibowlflash/geomatrydash/geodash1.html" },
+                        { name: "run 3", url: "https://cbgamesdev.github.io/chilibowlflash/run3/index.html" },
+                        { name: "Stick Man Goon", url: "https://stickmanhook2.org/game/stickman-hook/" },
+                        { name: "Vex", url: "https://wewewer4fteeeeeee.github.io/gammess/vex.html" },
+                        { name: "Block Blast", url: "https://cbgamesdev.github.io/chilibowlflash/blockblast/index.html" },
+                        { name: "Unblocker", url: "https://dihhhh.vercel.app/riz/dih.html" },
+                        { name: "MineCraft Tower Defense", url: "https://wewewer4fteeeeeee.github.io/gammess/minecraftdih.html" },
+                        { name: "Learn To Fly 2", url: "https://wewewer4fteeeeeee.github.io/gammess/learn2goon.html" },
+                        { name: "Portal Flash", url: "https://wewewer4fteeeeeee.github.io/gammess/Portal.html" },
+                        { name: "Age Of War", url: "https://wewewer4fteeeeeee.github.io/gammess/ageofsum.html" },
+                        { name: "Meat Boy", url: "https://wewewer4fteeeeeee.github.io/gammess/meatjerk.html" },
+                        { name: "SpaceBar Clicker", url: "https://wewewer4fteeeeeee.github.io/gammess/spacebargooner.html" },
+                        { name: "Slope", url: "https://wewewer4fteeeeeee.github.io/gammess/Slope.html" },
+                        { name: "Paper.Io 2", url: "https://ubv4l.neocities.org/projects/paperio2/" },
+                        { name: "Youtube unblocked Made By Me", url: "https://wewewer4fteeeeeee.github.io/dih/dih.html" },
+                    ];
+                    buttons.forEach(btnData => {
+                        const btn = document.createElement("button");
+                        btn.textContent = btnData.name;
+                        btn.onclick = () => {
+                            const w = window.open("about:blank", "_blank");
+                            if (!w) {
+                                alert("Please allow pop-ups for this site.");
+                                return;
+                            }
+                            w.document.title = btnData.name;
+                            const embed = w.document.createElement("embed");
+                            embed.src = btnData.url;
+                            embed.width = "100%";
+                            embed.height = "100%";
+                            embed.setAttribute("allowfullscreen", "true");
+                            w.document.body.style.margin = "0";
+                            w.document.body.appendChild(embed);
+                            w.addEventListener('beforeunload', (event) => {
+                                event.preventDefault();
+                                event.returnValue = '';
+                            });
+                        };
+                        menu.appendChild(btn);
+                    });
+                <\/script>
+            </body>
+            </html>
+        `;
+
+        const encodedContent = btoa(unescape(encodeURIComponent(mainPageContent)));
+        const dataUrl = `data:text/html;charset=utf-8;base64,${encodedContent}`;
+
+        const w = window.open("about:blank", "_blank");
+        if (w) {
+            w.document.write(mainPageContent);
+            w.document.close();
+            w.document.title = "Made By Exploding Xdddddd"; // Set title for the about:blank window
+        } else {
+            alert("Please allow pop-ups for this site to open the game launcher.");
+        }
+    </script>
 </body>
 </html>
