@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Launcher Page</title>
+    <style>
+        /* Optional: Add a smooth fade-in effect */
+        body { opacity: 0; transition: opacity 0.5s ease-in-out; }
+        body.loaded { opacity: 1; }
+    </style>
 </head>
 <body>
     <p>Opening the game launcher in a new window... Checking whitelist...</p>
@@ -13,11 +18,50 @@
             <head>
                 <meta charset="UTF-8">
                 <title>Made By Exploding Xdddddd</title>
+                <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
                 <style>
-                    body { font-family: Arial, sans-serif; background: #1e1e2f; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; }
-                    #menu { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; width: 80%; max-width: 900px; }
-                    button { background: #2b2b44; border: none; padding: 20px; border-radius: 12px; color: white; font-size: 16px; cursor: pointer; transition: transform 0.2s, background 0.2s; }
-                    button:hover { background: #3c3c5c; transform: scale(1.05); }
+                    body {
+                        font-family: 'Nunito', sans-serif;
+                        color: white;
+                        background-color: rgb(20, 20, 20);
+                        margin: 0;
+                        padding: 25px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        min-height: 100vh;
+                        box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+                    }
+
+                    #menu {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                        gap: 15px;
+                        width: 100%;
+                        max-width: 900px;
+                        padding: 25px;
+                        box-sizing: border-box;
+                    }
+                    
+                    button {
+                        background-color: rgb(45, 45, 45);
+                        color: white;
+                        border-radius: 4px;
+                        outline: none;
+                        border: 2px solid rgb(45, 45, 45);
+                        padding: 20px;
+                        font-size: 16px;
+                        cursor: pointer;
+                        transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+                        text-align: center;
+                        word-wrap: break-word;
+                    }
+                    
+                    button:hover {
+                        background-color: rgb(25, 25, 25);
+                        border-color: rgb(255, 255, 255, 0.2);
+                        transform: scale(1.05);
+                    }
                 </style>
             </head>
             <body>
@@ -51,12 +95,16 @@
                                 return;
                             }
                             w.document.title = btnData.name;
+                            w.document.body.style.margin = "0";
+                            w.document.body.style.backgroundColor = "rgb(20, 20, 20)";
+                            
                             const embed = w.document.createElement("embed");
                             embed.src = btnData.url;
                             embed.width = "100%";
                             embed.height = "100%";
+                            embed.style.display = "block";
                             embed.setAttribute("allowfullscreen", "true");
-                            w.document.body.style.margin = "0";
+                            
                             w.document.body.appendChild(embed);
                             w.addEventListener('beforeunload', (event) => {
                                 event.preventDefault();
@@ -77,10 +125,16 @@
         if (w) {
             w.document.write(mainPageContent);
             w.document.close();
-            w.document.title = "Made By Exploding Xdddddd"; // Set title for the about:blank window
+            w.document.title = "Made By Exploding Xdddddd";
         } else {
             alert("Please allow pop-ups for this site to open the game launcher.");
         }
+    </script>
+    <script>
+        // Smooth fade-in for the initial page
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
     </script>
 </body>
 </html>
