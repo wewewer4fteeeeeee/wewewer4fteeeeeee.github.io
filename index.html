@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Launcher Page</title>
+    <style>
+        /* Optional: Add a smooth fade-in effect */
+        body { opacity: 0; transition: opacity 0.5s ease-in-out; }
+        body.loaded { opacity: 1; }
+    </style>
 </head>
 <body>
     <p>Opening the game launcher in a new window... Checking whitelist...</p>
@@ -23,22 +28,21 @@
                         padding: 25px;
                         display: flex;
                         justify-content: center;
-                        align-items: flex-start;
+                        align-items: center;
                         min-height: 100vh;
-                        box-sizing: border-box;
+                        box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
                     }
-                    #launcher-container {
+
+                    #menu {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                        gap: 15px;
                         width: 100%;
                         max-width: 900px;
                         padding: 25px;
                         box-sizing: border-box;
                     }
-                    .menu-grid {
-                        display: grid;
-                        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                        gap: 15px;
-                        padding: 15px 0;
-                    }
+                    
                     button {
                         background-color: rgb(45, 45, 45);
                         color: white;
@@ -52,142 +56,70 @@
                         text-align: center;
                         word-wrap: break-word;
                     }
+                    
                     button:hover {
                         background-color: rgb(25, 25, 25);
                         border-color: rgb(255, 255, 255, 0.2);
                         transform: scale(1.05);
                     }
-                    #tab-buttons {
-                        display: flex;
-                        gap: 5px;
-                        justify-content: center;
-                        margin-bottom: 20px;
-                    }
-                    .tab-button {
-                        background-color: rgb(35, 35, 35);
-                        color: white;
-                        border: 1px solid rgb(50, 50, 50);
-                        padding: 10px 20px;
-                        cursor: pointer;
-                        border-bottom: none;
-                        border-radius: 4px 4px 0 0;
-                        transition: background-color 0.2s;
-                    }
-                    .tab-button:hover {
-                        background-color: rgb(45, 45, 45);
-                    }
-                    .tab-button.active {
-                        background-color: rgb(20, 20, 20);
-                        border: 1px solid rgb(50, 50, 50);
-                        border-bottom: 1px solid transparent;
-                    }
-                    .tab-content {
-                        display: none;
-                    }
-                    .tab-content.active {
-                        display: block;
-                    }
                 </style>
             </head>
             <body>
-                <div id="launcher-container">
-                    <div id="tab-buttons">
-                        <button class="tab-button active" onclick="showCategory('All')">All</button>
-                        <button class="tab-button" onclick="showCategory('Gun Games')">Gun Games</button>
-                        <button class="tab-button" onclick="showCategory('Strat Games')">Strat Games</button>
-                        <button class="tab-button" onclick="showCategory('Unblocked Stuff')">Unblocked Stuff</button>
-                        <button class="tab-button" onclick="showCategory('Stick Man Games')">Stick Man Games</button>
-                    </div>
-                    <div id="games-container">
-                        <div id="tab-All" class="tab-content active">
-                            <div id="menu-All" class="menu-grid"></div>
-                        </div>
-                        <div id="tab-Gun Games" class="tab-content">
-                            <div id="menu-Gun Games" class="menu-grid"></div>
-                        </div>
-                        <div id="tab-Strat Games" class="tab-content">
-                            <div id="menu-Strat Games" class="menu-grid"></div>
-                        </div>
-                        <div id="tab-Unblocked Stuff" class="tab-content">
-                            <div id="menu-Unblocked Stuff" class="menu-grid"></div>
-                        </div>
-                        <div id="tab-Stick Man Games" class="tab-content">
-                            <div id="menu-Stick Man Games" class="menu-grid"></div>
-                        </div>
-                    </div>
-                </div>
+                <div id="menu"></div>
                 <script>
                     const buttons = [
-                        { name: "GunBlood", url: "https://cbgamesdev.github.io/chilibowlflash/gunblood.html", category: "Gun Games" },
-                        { name: "geomatry dash", url: "https://cbgamesdev.github.io/chilibowlflash/geomatrydash/geodash1.html", category: "Unblocked Stuff" },
-                        { name: "run 3", url: "https://cbgamesdev.github.io/chilibowlflash/run3/index.html", category: "Unblocked Stuff" },
-                        { name: "Stick Man Goon", url: "https://stickmanhook2.org/game/stickman-hook/", category: "Stick Man Games" },
-                        { name: "Vex", url: "https://wewewer4fteeeeeee.github.io/gammess/vex.html", category: "Stick Man Games" },
-                        { name: "Block Blast", url: "https://cbgamesdev.github.io/chilibowlflash/blockblast/index.html", category: "Strat Games" },
-                        { name: "Unblocker", url: "https://dihhhh.vercel.app/riz/dih.html", category: "Unblocked Stuff" },
-                        { name: "MineCraft Tower Defense", url: "https://wewewer4fteeeeeee.github.io/gammess/minecraftdih.html", category: "Strat Games" },
-                        { name: "Learn To Fly 2", url: "https://wewewer4fteeeeeee.github.io/gammess/learn2goon.html", category: "Unblocked Stuff" },
-                        { name: "Portal Flash", url: "https://wewewer4fteeeeeee.github.io/gammess/Portal.html", category: "Unblocked Stuff" },
-                        { name: "Age Of War", url: "https://wewewer4fteeeeeee.github.io/gammess/ageofsum.html", category: "Strat Games" },
-                        { name: "Meat Boy", url: "https://wewewer4fteeeeeee.github.io/gammess/meatjerk.html", category: "Unblocked Stuff" },
-                        { name: "SpaceBar Clicker", url: "https://wewewer4fteeeeeee.github.io/gammess/spacebargooner.html", category: "Unblocked Stuff" },
-                        { name: "Slope", url: "https://wewewer4fteeeeeee.github.io/gammess/Slope.html", category: "Unblocked Stuff" },
-                        { name: "Paper.Io 2", url: "https://ubv4l.neocities.org/projects/paperio2/", category: "Strat Games" },
-                        { name: "Youtube unblocked Made By Me", url: "https://wewewer4fteeeeeee.github.io/dih/dih.html", category: "Unblocked Stuff" },
+                        { name: "GunBlood", url: "https://cbgamesdev.github.io/chilibowlflash/gunblood.html" },
+                        { name: "geomatry dash", url: "https://cbgamesdev.github.io/chilibowlflash/geomatrydash/geodash1.html" },
+                        { name: "run 3", url: "https://cbgamesdev.github.io/chilibowlflash/run3/index.html" },
+                        { name: "Stick Man Goon", url: "https://stickmanhook2.org/game/stickman-hook/" },
+                        { name: "Vex", url: "https://wewewer4fteeeeeee.github.io/gammess/vex.html" },
+                        { name: "Block Blast", url: "https://cbgamesdev.github.io/chilibowlflash/blockblast/index.html" },
+                        { name: "Unblocker", url: "https://dihhhh.vercel.app/riz/dih.html" },
+                        { name: "MineCraft Tower Defense", url: "https://wewewer4fteeeeeee.github.io/gammess/minecraftdih.html" },
+                        { name: "Learn To Fly 2", url: "https://wewewer4fteeeeeee.github.io/gammess/learn2goon.html" },
+                        { name: "Portal Flash", url: "https://wewewer4fteeeeeee.github.io/gammess/Portal.html" },
+                        { name: "Age Of War", url: "https://wewewer4fteeeeeee.github.io/gammess/ageofsum.html" },
+                        { name: "Meat Boy", url: "https://wewewer4fteeeeeee.github.io/gammess/meatjerk.html" },
+                        { name: "SpaceBar Clicker", url: "https://wewewer4fteeeeeee.github.io/gammess/spacebargooner.html" },
+                        { name: "Slope", url: "https://wewewer4fteeeeeee.github.io/gammess/Slope.html" },
+                        { name: "Paper.Io 2", url: "https://ubv4l.neocities.org/projects/paperio2/" },
+                        { name: "Youtube unblocked Made By Me", url: "https://wewewer4fteeeeeee.github.io/dih/dih.html" },
                     ];
-                    function showCategory(category) {
-                        const tabButtons = document.querySelectorAll('.tab-button');
-                        const tabContents = document.querySelectorAll('.tab-content');
-                        tabButtons.forEach(btn => btn.classList.remove('active'));
-                        tabContents.forEach(content => content.classList.remove('active'));
-                        document.querySelector(\`.tab-button[onclick="showCategory('\${category}')"]\`).classList.add('active');
-                        document.getElementById(\`tab-\${category}\`).classList.add('active');
-                    }
-                    function createButtons() {
-                        const categories = ["All", "Gun Games", "Strat Games", "Unblocked Stuff", "Stick Man Games"];
-                        categories.forEach(category => {
-                            let gamesToDisplay = buttons;
-                            if (category !== "All") {
-                                gamesToDisplay = buttons.filter(btnData => btnData.category === category);
+                    buttons.forEach(btnData => {
+                        const btn = document.createElement("button");
+                        btn.textContent = btnData.name;
+                        btn.onclick = () => {
+                            const w = window.open("about:blank", "_blank");
+                            if (!w) {
+                                alert("Please allow pop-ups for this site.");
+                                return;
                             }
-                            const menu = document.getElementById(`menu-${category}`);
-                            if (menu) {
-                                gamesToDisplay.forEach(btnData => {
-                                    const btn = document.createElement("button");
-                                    btn.textContent = btnData.name;
-                                    btn.onclick = () => {
-                                        const w = window.open("about:blank", "_blank");
-                                        if (!w) {
-                                            alert("Please allow pop-ups for this site.");
-                                            return;
-                                        }
-                                        w.document.write(\`
-                                            <!DOCTYPE html>
-                                            <html>
-                                                <head>
-                                                    <title>\${btnData.name}</title>
-                                                    <style>
-                                                        body { margin: 0; background-color: rgb(20, 20, 20); overflow: hidden; }
-                                                        embed { display: block; width: 100vw; height: 100vh; }
-                                                    </style>
-                                                </head>
-                                                <body>
-                                                    <embed src="\${btnData.url}" allowfullscreen="true">
-                                                </body>
-                                            </html>
-                                        \`);
-                                        w.document.close();
-                                    };
-                                    menu.appendChild(btn);
-                                });
-                            }
-                        });
-                    }
-                    createButtons();
+                            w.document.title = btnData.name;
+                            w.document.body.style.margin = "0";
+                            w.document.body.style.backgroundColor = "rgb(20, 20, 20)";
+                            
+                            const embed = w.document.createElement("embed");
+                            embed.src = btnData.url;
+                            embed.width = "100%";
+                            embed.height = "100%";
+                            embed.style.display = "block";
+                            embed.setAttribute("allowfullscreen", "true");
+                            
+                            w.document.body.appendChild(embed);
+                            w.addEventListener('beforeunload', (event) => {
+                                event.preventDefault();
+                                event.returnValue = '';
+                            });
+                        };
+                        menu.appendChild(btn);
+                    });
                 <\/script>
             </body>
             </html>
         `;
+
+        const encodedContent = btoa(unescape(encodeURIComponent(mainPageContent)));
+        const dataUrl = `data:text/html;charset=utf-8;base64,${encodedContent}`;
 
         const w = window.open("about:blank", "_blank");
         if (w) {
@@ -197,6 +129,12 @@
         } else {
             alert("Please allow pop-ups for this site to open the game launcher.");
         }
+    </script>
+    <script>
+        // Smooth fade-in for the initial page
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
     </script>
 </body>
 </html>
