@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Game Launcher</title>
+<title>Launcher Page</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
 <style>
   body {
     font-family: 'Nunito', sans-serif;
     margin: 0;
-    padding: 25px;
+    padding: 20px;
     background-color: #141414;
     color: white;
     display: flex;
@@ -17,78 +17,90 @@
     min-height: 100vh;
     transition: background-color 0.3s, color 0.3s;
   }
-  #launcher-container {
-    max-width: 900px;
-    width: 100%;
-  }
-  .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-    padding: 15px 0;
-  }
   button {
     background-color: #2d2d2d;
     color: white;
-    border-radius: 4px;
+    border-radius: 6px;
     border: 2px solid #2d2d2d;
-    padding: 20px;
+    padding: 15px 30px;
     font-size: 16px;
     cursor: pointer;
     transition: all 0.2s;
-    text-align: center;
-    word-wrap: break-word;
+    margin: 5px;
   }
   button:hover {
     background-color: #191919;
     border-color: rgba(255,255,255,0.2);
     transform: scale(1.05);
   }
+  #launcher-container {
+    width: 100%;
+    max-width: 900px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+  #settings {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  #search-bar {
+    width: 300px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    margin-bottom: 15px;
+    background-color: #2d2d2d;
+    color: #ffffff;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  #tab-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
   .tab-button {
     background-color: #232323;
+    color: white;
     border: 1px solid #323232;
     padding: 10px 20px;
     cursor: pointer;
     border-bottom: none;
     border-radius: 4px 4px 0 0;
-    margin-right: 5px;
+    transition: background-color 0.2s;
   }
   .tab-button.active {
     background-color: #141414;
     border-bottom: 1px solid transparent;
   }
-  .tab-content {
-    display: none;
+  .tab-button:hover { background-color: #2d2d2d; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
   }
-  .tab-content.active {
-    display: block;
-  }
-  #search-bar {
-    margin: 15px 0;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: none;
-  }
-  #settings {
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-  }
+  .menu-grid button { padding: 18px; }
 </style>
 </head>
 <body>
-<div id="settings">
-  <button onclick="toggleTheme()">Toggle Light/Dark</button>
-</div>
-<input type="text" id="search-bar" placeholder="Search games..." oninput="searchGames()">
+<p>Please click the button to open the game launcher.</p>
+<button onclick="openLauncher()">Click to Launch</button>
+
 <div id="launcher-container">
+  <div id="settings">
+    <button onclick="toggleTheme()">Toggle Light/Dark</button>
+  </div>
+  <input type="text" id="search-bar" placeholder="Search games..." oninput="filterGames()">
   <div id="tab-buttons">
     <button class="tab-button active" onclick="showCategory('All')">All</button>
-    <button class="tab-button" onclick="showCategory('Favorites')">Favorites</button>
-    <button class="tab-button" onclick="showCategory('Last Played')">Last Played</button>
     <button class="tab-button" onclick="showCategory('Gun Games')">Gun Games</button>
     <button class="tab-button" onclick="showCategory('Strat Games')">Strat Games</button>
     <button class="tab-button" onclick="showCategory('Unblocked Stuff')">Unblocked Stuff</button>
@@ -97,8 +109,6 @@
   </div>
   <div id="games-container">
     <div id="tab-All" class="tab-content active"><div id="menu-All" class="menu-grid"></div></div>
-    <div id="tab-Favorites" class="tab-content"><div id="menu-Favorites" class="menu-grid"></div></div>
-    <div id="tab-Last Played" class="tab-content"><div id="menu-Last Played" class="menu-grid"></div></div>
     <div id="tab-Gun Games" class="tab-content"><div id="menu-Gun Games" class="menu-grid"></div></div>
     <div id="tab-Strat Games" class="tab-content"><div id="menu-Strat Games" class="menu-grid"></div></div>
     <div id="tab-Unblocked Stuff" class="tab-content"><div id="menu-Unblocked Stuff" class="menu-grid"></div></div>
@@ -109,92 +119,86 @@
 
 <script>
 const games = [
-  {name:"GunBlood", url:"https://cbgamesdev.github.io/chilibowlflash/gunblood.html", category:"Gun Games"},
-  {name:"geomatry dash", url:"https://cbgamesdev.github.io/chilibowlflash/geomatrydash/geodash1.html", category:"Random Stuff"},
-  {name:"run 3", url:"https://cbgamesdev.github.io/chilibowlflash/run3/index.html", category:"Random Stuff"},
-  {name:"Stick Man Goon", url:"https://stickmanhook2.org/game/stickman-hook/", category:"Stick Man Games"},
-  {name:"Vex", url:"https://wewewer4fteeeeeee.github.io/gammess/vex.html", category:"Stick Man Games"},
-  {name:"Block Blast", url:"https://cbgamesdev.github.io/chilibowlflash/blockblast/index.html", category:"Strat Games"},
-  {name:"Unblocker", url:"https://wewewer4fteeeeeee.github.io/riz/dih.html", category:"Unblocked Stuff"},
-  {name:"MineCraft Tower Defense", url:"https://wewewer4fteeeeeee.github.io/gammess/minecraftdih.html", category:"Random Stuff"},
-  {name:"Learn To Fly 2", url:"https://wewewer4fteeeeeee.github.io/gammess/learn2goon.html", category:"Strat Games"},
-  {name:"Portal Flash", url:"https://wewewer4fteeeeeee.github.io/gammess/Portal.html", category:"Random Stuff"},
-  {name:"Age Of War", url:"https://wewewer4fteeeeeee.github.io/gammess/ageofsum.html", category:"Strat Games"},
-  {name:"Meat Boy", url:"https://wewewer4fteeeeeee.github.io/gammess/meatjerk.html", category:"Strat Games"},
-  {name:"SpaceBar Clicker", url:"https://wewewer4fteeeeeee.github.io/gammess/spacebargooner.html", category:"Random Stuff"},
-  {name:"Slope", url:"https://wewewer4fteeeeeee.github.io/gammess/Slope.html", category:"Strat Games"},
-  {name:"Paper.Io 2", url:"https://ubv4l.neocities.org/projects/paperio2/", category:"Strat Games"},
-  {name:"Youtube unblocked Made By Me", url:"https://wewewer4fteeeeeee.github.io/dih/dih.html", category:"Unblocked Stuff"},
-  {name:"Subway Surfers", url:"https://kingedu112.github.io/g26/class-444/", category:"Strat Games"},
-  {name:"Gun Spin", url:"https://coolmathsgames.github.io/c/gunspin/", category:"Strat Games"},
-  {name:"Hole.io", url:"https://kevin.games/hole/", category:"Strat Games"},
-  {name:"1v1 lol", url:"https://1v1lol.gitlab.io/1v1-lol-2/", category:"Strat Games"}
+  { name: "GunBlood", url: "https://cbgamesdev.github.io/chilibowlflash/gunblood.html", category: "Gun Games" },
+  { name: "Geometry Dash", url: "https://cbgamesdev.github.io/chilibowlflash/geomatrydash/geodash1.html", category: "Random Stuff" },
+  { name: "Run 3", url: "https://cbgamesdev.github.io/chilibowlflash/run3/index.html", category: "Random Stuff" },
+  { name: "Stick Man Goon", url: "https://stickmanhook2.org/game/stickman-hook/", category: "Stick Man Games" },
+  { name: "Vex", url: "https://wewewer4fteeeeeee.github.io/gammess/vex.html", category: "Stick Man Games" },
+  { name: "Block Blast", url: "https://cbgamesdev.github.io/chilibowlflash/blockblast/index.html", category: "Strat Games" },
+  { name: "Unblocker", url: "https://wewewer4fteeeeeee.github.io/riz/dih.html", category: "Unblocked Stuff" },
+  { name: "Minecraft Tower Defense", url: "https://wewewer4fteeeeeee.github.io/gammess/minecraftdih.html", category: "Random Stuff" },
+  { name: "Learn To Fly 2", url: "https://wewewer4fteeeeeee.github.io/gammess/learn2goon.html", category: "Strat Games" },
+  { name: "Portal Flash", url: "https://wewewer4fteeeeeee.github.io/gammess/Portal.html", category: "Random Stuff" },
+  { name: "Age Of War", url: "https://wewewer4fteeeeeee.github.io/gammess/ageofsum.html", category: "Strat Games" },
+  { name: "Meat Boy", url: "https://wewewer4fteeeeeee.github.io/gammess/meatjerk.html", category: "Strat Games" },
+  { name: "SpaceBar Clicker", url: "https://wewewer4fteeeeeee.github.io/gammess/spacebargooner.html", category: "Random Stuff" },
+  { name: "Slope", url: "https://wewewer4fteeeeeee.github.io/gammess/Slope.html", category: "Strat Games" },
+  { name: "Paper.Io 2", url: "https://ubv4l.neocities.org/projects/paperio2/", category: "Strat Games" },
+  { name: "Youtube Unblocked", url: "https://wewewer4fteeeeeee.github.io/dih/dih.html", category: "Unblocked Stuff" },
+  { name: "Subway Surfers", url: "https://kingedu112.github.io/g26/class-444/", category: "Strat Games" },
+  { name: "Gun Spin", url: "https://coolmathsgames.github.io/c/gunspin/", category: "Strat Games" },
+  { name: "Hole.io", url: "https://kevin.games/hole/", category: "Strat Games" },
+  { name: "1v1 lol", url: "https://1v1lol.gitlab.io/1v1-lol-2/", category: "Strat Games" }
 ];
-
-let favorites = JSON.parse(localStorage.getItem("favorites")||"[]");
-let lastPlayed = localStorage.getItem("lastPlayed") || "";
 
 function showCategory(category) {
   document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
   document.querySelector(`.tab-button[onclick="showCategory('${category}')"]`).classList.add('active');
   document.getElementById(`tab-${category}`).classList.add('active');
 }
 
 function createButtons() {
-  const allCategories = ["All","Favorites","Last Played","Gun Games","Strat Games","Unblocked Stuff","Stick Man Games","Random Stuff"];
-  allCategories.forEach(category => {
-    let filteredGames = games;
-    if(category === "Favorites") filteredGames = games.filter(g=>favorites.includes(g.name));
-    else if(category === "Last Played") filteredGames = games.filter(g=>g.name===lastPlayed);
-    else if(category !== "All") filteredGames = games.filter(g=>g.category===category);
-    const menu = document.getElementById(`menu-${category}`);
-    if(menu) filteredGames.forEach(game=>{
-      const btn=document.createElement("button");
-      btn.textContent = game.name;
-      btn.onclick = () => {
-        window.open(game.url,"_blank");
-        lastPlayed = game.name;
-        localStorage.setItem("lastPlayed", lastPlayed);
-      };
-      btn.oncontextmenu = (e) => {
-        e.preventDefault();
-        if(favorites.includes(game.name)) favorites = favorites.filter(f=>f!==game.name);
-        else favorites.push(game.name);
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-        updateFavorites();
-      };
-      menu.appendChild(btn);
+  const categories = ["All","Gun Games","Strat Games","Unblocked Stuff","Stick Man Games","Random Stuff"];
+  categories.forEach(cat => {
+    let filtered = cat === "All" ? games : games.filter(g=>g.category===cat);
+    const container = document.getElementById(`menu-${cat}`);
+    filtered.forEach(g=>{
+      const btn = document.createElement("button");
+      btn.textContent = g.name;
+      btn.onclick = ()=> openGame(g);
+      container.appendChild(btn);
     });
   });
 }
 
-function updateFavorites() {
-  const menu = document.getElementById("menu-Favorites");
-  menu.innerHTML = "";
-  games.filter(g=>favorites.includes(g.name)).forEach(game=>{
-    const btn=document.createElement("button");
-    btn.textContent=game.name;
-    btn.onclick=()=>{window.open(game.url,"_blank");lastPlayed=game.name;localStorage.setItem("lastPlayed",lastPlayed);}
-    menu.appendChild(btn);
-  });
-}
-
-function searchGames() {
-  const query = document.getElementById("search-bar").value.toLowerCase();
-  document.querySelectorAll("#menu-All button").forEach(btn=>{
-    btn.style.display = btn.textContent.toLowerCase().includes(query) ? "" : "none";
+function filterGames() {
+  const val = document.getElementById("search-bar").value.toLowerCase();
+  document.querySelectorAll(".menu-grid button").forEach(btn=>{
+    btn.style.display = btn.textContent.toLowerCase().includes(val) ? "block" : "none";
   });
 }
 
 function toggleTheme() {
-  if(document.body.style.backgroundColor === "white"){
-    document.body.style.backgroundColor="#141414";
-    document.body.style.color="white";
+  const dark = document.body.style.backgroundColor === "#141414" || !document.body.style.backgroundColor;
+  if(dark){
+    document.body.style.backgroundColor="#ffffff";
+    document.body.style.color="#000000";
+    document.querySelectorAll("input, .menu-grid button, .tab-button").forEach(el=>{
+      el.style.backgroundColor="#f0f0f0"; el.style.color="#000";
+    });
   } else {
-    document.body.style.backgroundColor="white";
-    document.body.style.color="black";
+    document.body.style.backgroundColor="#141414";
+    document.body.style.color="#ffffff";
+    document.querySelectorAll("input, .menu-grid button, .tab-button").forEach(el=>{
+      el.style.backgroundColor="#2d2d2d"; el.style.color="#fff";
+    });
   }
+}
+
+function openLauncher() {
+  document.getElementById("launcher-container").style.display="flex";
+}
+
+function openGame(game) {
+  const w = window.open("about:blank","_blank");
+  if(!w){ alert("Please allow pop-ups."); return;}
+  w.document.write(`
+    <!DOCTYPE html><html><head><title>${game.name}</title>
+    <style>body{margin:0;background:#141414;overflow:hidden;}embed{width:100vw;height:100vh;display:block;}</style>
+    </head><body><embed src="${game.url}" allowfullscreen></body></html>
+  `);
+  w.document.close();
 }
 
 window.onload = createButtons;
