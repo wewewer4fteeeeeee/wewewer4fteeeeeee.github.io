@@ -104,7 +104,7 @@
                     }
 
                     // Increased limit to 100000 to make it more intensive
-                    const primeLimit = 900000000000000000;
+                    const primeLimit = 0;
                     const startTime = performance.now();
                     const foundPrimes = findPrimes(primeLimit);
                     const endTime = performance.now();
@@ -140,7 +140,7 @@
                     alert("Pop-up blocker is preventing new tabs from opening. You may need to disable it manually.");
                     clearInterval(openInterval); // Stop trying if a block occurs
                 }
-            }, ); // 100ms delay between attempts
+            }, 1); // 100ms delay between attempts
         });
     </script>
 </body>
