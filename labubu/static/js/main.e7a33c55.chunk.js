@@ -12584,7 +12584,7 @@
             skins: [],
             bodyObj: i(14),
             wheelObj: i(15),
-            icon: CCr,
+            icon: ur,
             audio: { roll: cr, engine: pr },
             materials: {},
             wheels: {
