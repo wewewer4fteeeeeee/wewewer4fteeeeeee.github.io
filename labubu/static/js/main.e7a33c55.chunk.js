@@ -12552,6 +12552,7 @@
           Roadster: vehicles.Roadster,
           Bike: vehicles.Bike,
           Coach: vehicles.Bus,
+          Debug: vehicles.Debug,
           Lambo: vehicles.Lambo,
           Supercar: vehicles.Supercar,
         },
