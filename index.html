@@ -1,3 +1,249 @@
-<script>
-document.write(unescape('%0A%3C%21DOCTYPE%20html%3E%0A%3Chtml%20lang%3D%22en%22%3E%0A%3Chead%3E%0A%20%20%20%20%3Cmeta%20charset%3D%22UTF-8%22%3E%0A%20%20%20%20%3Ctitle%3ELauncher%20Page%3C/title%3E%0A%20%20%20%20%3Clink%20href%3D%22https%3A//fonts.googleapis.com/css2%3Ffamily%3DNunito%3Awght@400%3B700%26display%3Dswap%22%20rel%3D%22stylesheet%22%3E%0A%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20%20%20body%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20font-family%3A%20%27Nunito%27%2C%20sans-serif%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20color%3A%20white%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20background-color%3A%20rgb%2820%2C%2020%2C%2020%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20display%3A%20flex%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20justify-content%3A%20center%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20align-items%3A%20center%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20height%3A%20100vh%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20margin%3A%200%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20flex-direction%3A%20column%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20button%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20background-color%3A%20rgb%2845%2C%2045%2C%2045%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20color%3A%20white%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20border-radius%3A%204px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20outline%3A%20none%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20border%3A%202px%20solid%20rgb%2845%2C%2045%2C%2045%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20padding%3A%2015px%2030px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20font-size%3A%2018px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20cursor%3A%20pointer%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20transition%3A%20background-color%200.2s%2C%20border-color%200.2s%2C%20transform%200.2s%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20button%3Ahover%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20background-color%3A%20rgb%2825%2C%2025%2C%2025%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20border-color%3A%20rgb%28255%2C%20255%2C%20255%2C%200.2%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20transform%3A%20scale%281.05%29%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%3C/style%3E%0A%3C/head%3E%0A%3Cbody%3E%0A%20%20%20%20%3Cp%3ECLANKERRRRRRRRRRRRR%3C/p%3E%0A%20%20%20%20%3Cbutton%20onclick%3D%22openLauncher%28%29%22%3EClick%20to%20GOON%20AUHGHGH%3C/button%3E%0A%20%20%20%20%3Cscript%3E%0Aconst%20mainPageContent%20%3D%20%60%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C%21DOCTYPE%20html%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Chtml%20lang%3D%22en%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Chead%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cmeta%20charset%3D%22UTF-8%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Ctitle%3EMade%20By%20Exploding%20Xdddddd%3C/title%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Clink%20href%3D%22https%3A//fonts.googleapis.com/css2%3Ffamily%3DNunito%3Awght@400%3B700%26display%3Dswap%22%20rel%3D%22stylesheet%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20body%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20font-family%3A%20%27Nunito%27%2C%20sans-serif%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20color%3A%20white%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20background-color%3A%20rgb%2820%2C%2020%2C%2020%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20margin%3A%200%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20padding%3A%2025px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20display%3A%20flex%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20justify-content%3A%20center%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20align-items%3A%20flex-start%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20min-height%3A%20100vh%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20box-sizing%3A%20border-box%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23launcher-container%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20width%3A%20100%25%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20max-width%3A%20900px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20padding%3A%2025px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20box-sizing%3A%20border-box%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.menu-grid%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20display%3A%20grid%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20grid-template-columns%3A%20repeat%28auto-fill%2C%20minmax%28150px%2C%201fr%29%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gap%3A%2015px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20padding%3A%2015px%200%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20button%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20background-color%3A%20rgb%2845%2C%2045%2C%2045%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20color%3A%20white%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20border-radius%3A%204px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20outline%3A%20none%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20border%3A%202px%20solid%20rgb%2845%2C%2045%2C%2045%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20padding%3A%2020px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20font-size%3A%2016px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20cursor%3A%20pointer%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20transition%3A%20background-color%200.2s%2C%20border-color%200.2s%2C%20transform%200.2s%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20text-align%3A%20center%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20word-wrap%3A%20break-word%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20button%3Ahover%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20background-color%3A%20rgb%2825%2C%2025%2C%2025%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20border-color%3A%20rgb%28255%2C%20255%2C%20255%2C%200.2%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20transform%3A%20scale%281.05%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23tab-buttons%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20display%3A%20flex%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gap%3A%205px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20justify-content%3A%20center%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20margin-bottom%3A%2020px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.tab-button%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20background-color%3A%20rgb%2835%2C%2035%2C%2035%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20color%3A%20white%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20border%3A%201px%20solid%20rgb%2850%2C%2050%2C%2050%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20padding%3A%2010px%2020px%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20cursor%3A%20pointer%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20border-bottom%3A%20none%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20border-radius%3A%204px%204px%200%200%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20transition%3A%20background-color%200.2s%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.tab-button%3Ahover%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20background-color%3A%20rgb%2845%2C%2045%2C%2045%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.tab-button.active%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20background-color%3A%20rgb%2820%2C%2020%2C%2020%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20border%3A%201px%20solid%20rgb%2850%2C%2050%2C%2050%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20border-bottom%3A%201px%20solid%20transparent%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.tab-content%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20display%3A%20none%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.tab-content.active%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20display%3A%20block%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/style%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C/head%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3Cbody%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20id%3D%22launcher-container%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20id%3D%22tab-buttons%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cbutton%20class%3D%22tab-button%20active%22%20onclick%3D%22showCategory%28%27All%27%29%22%3EAll%3C/button%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cbutton%20class%3D%22tab-button%22%20onclick%3D%22showCategory%28%27Gun%20Games%27%29%22%3EGun%20Games%3C/button%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cbutton%20class%3D%22tab-button%22%20onclick%3D%22showCategory%28%27Strat%20Games%27%29%22%3EStrat%20Games%3C/button%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cbutton%20class%3D%22tab-button%22%20onclick%3D%22showCategory%28%27Unblocked%20Stuff%27%29%22%3EUnblocked%20Stuff%3C/button%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cbutton%20class%3D%22tab-button%22%20onclick%3D%22showCategory%28%27Stick%20Man%20Games%27%29%22%3EStick%20Man%20Games%3C/button%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cbutton%20class%3D%22tab-button%22%20onclick%3D%22showCategory%28%27Random%20Stuff%27%29%22%3ERandom%20Stuff%3C/button%3E%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20id%3D%22games-container%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20id%3D%22tab-All%22%20class%3D%22tab-content%20active%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20id%3D%22menu-All%22%20class%3D%22menu-grid%22%3E%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20id%3D%22tab-Random%20Stuff%22%20class%3D%22tab-content%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20id%3D%22menu-Random%20Stuff%22%20class%3D%22menu-grid%22%3E%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20id%3D%22tab-Gun%20Games%22%20class%3D%22tab-content%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20id%3D%22menu-Gun%20Games%22%20class%3D%22menu-grid%22%3E%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20id%3D%22tab-Strat%20Games%22%20class%3D%22tab-content%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20id%3D%22menu-Strat%20Games%22%20class%3D%22menu-grid%22%3E%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20id%3D%22tab-Unblocked%20Stuff%22%20class%3D%22tab-content%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20id%3D%22menu-Unblocked%20Stuff%22%20class%3D%22menu-grid%22%3E%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20id%3D%22tab-Stick%20Man%20Games%22%20class%3D%22tab-content%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cdiv%20id%3D%22menu-Stick%20Man%20Games%22%20class%3D%22menu-grid%22%3E%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/div%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cscript%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20const%20buttons%20%3D%20%5B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22GunBlood%22%2C%20url%3A%20%22https%3A//cbgamesdev.github.io/chilibowlflash/gunblood.html%22%2C%20category%3A%20%22Gun%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22geomatry%20dash%22%2C%20url%3A%20%22https%3A//cbgamesdev.github.io/chilibowlflash/geomatrydash/geodash1.html%22%2C%20category%3A%20%22Random%20Stuff%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22run%203%22%2C%20url%3A%20%22https%3A//cbgamesdev.github.io/chilibowlflash/run3/index.html%22%2C%20category%3A%20%22Random%20Stuff%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Stick%20Man%20Goon%22%2C%20url%3A%20%22https%3A//stickmanhook2.org/game/stickman-hook/%22%2C%20category%3A%20%22Stick%20Man%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Vex%22%2C%20url%3A%20%22https%3A//wewewer4fteeeeeee.github.io/gammess/vex.html%22%2C%20category%3A%20%22Stick%20Man%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Block%20Blast%22%2C%20url%3A%20%22https%3A//cbgamesdev.github.io/chilibowlflash/blockblast/index.html%22%2C%20category%3A%20%22Strat%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Unblocker%22%2C%20url%3A%20%22https%3A//wewewer4fteeeeeee.github.io/riz/dih.html%22%2C%20category%3A%20%22Unblocked%20Stuff%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22MineCraft%20Tower%20Defense%22%2C%20url%3A%20%22https%3A//wewewer4fteeeeeee.github.io/gammess/minecraftdih.html%22%2C%20category%3A%20%22Random%20Stuff%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Learn%20To%20Fly%202%22%2C%20url%3A%20%22https%3A//wewewer4fteeeeeee.github.io/gammess/learn2goon.html%22%2C%20category%3A%20%22Strat%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Portal%20Flash%22%2C%20url%3A%20%22https%3A//wewewer4fteeeeeee.github.io/gammess/Portal.html%22%2C%20category%3A%20%22Random%20Stuff%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Age%20Of%20War%22%2C%20url%3A%20%22https%3A//wewewer4fteeeeeee.github.io/gammess/ageofsum.html%22%2C%20category%3A%20%22Strat%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Meat%20Boy%22%2C%20url%3A%20%22https%3A//wewewer4fteeeeeee.github.io/gammess/meatjerk.html%22%2C%20category%3A%20%22Strat%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22SpaceBar%20Clicker%22%2C%20url%3A%20%22https%3A//wewewer4fteeeeeee.github.io/gammess/spacebargooner.html%22%2C%20category%3A%20%22Random%20Stuff%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Slope%22%2C%20url%3A%20%22https%3A//wewewer4fteeeeeee.github.io/gammess/Slope.html%22%2C%20category%3A%20%22Strat%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Paper.Io%202%22%2C%20url%3A%20%22https%3A//ubv4l.neocities.org/projects/paperio2/%22%2C%20category%3A%20%22Strat%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Youtube%20unblocked%20Made%20By%20Me%22%2C%20url%3A%20%22https%3A//wewewer4fteeeeeee.github.io/dih/dih.html%22%2C%20category%3A%20%22Unblocked%20Stuff%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Subway%20Surfers%22%2C%20url%3A%20%22https%3A//kingedu112.github.io/g26/class-444/%22%2C%20category%3A%20%22Strat%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Gun%20Spin%22%2C%20url%3A%20%22https%3A//coolmathsgames.github.io/c/gunspin/%22%2C%20category%3A%20%22Strat%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Hole.io%22%2C%20url%3A%20%22https%3A//kevin.games/hole/%22%2C%20category%3A%20%22Strat%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%221v1%20lol%22%2C%20url%3A%20%22https%3A//1v1lol.gitlab.io/1v1-lol-2/%22%2C%20category%3A%20%22Strat%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Stickman%20Fight%22%2C%20url%3A%20%22https%3A//labgstore311.github.io/g50/class-6%22%2C%20category%3A%20%22Stick%20Man%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22ragdoll%20archers%22%2C%20url%3A%20%22https%3A//bitlifeonline.github.io/ragdoll-archers/%22%2C%20category%3A%20%22Stick%20Man%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22moto%20x3m%22%2C%20url%3A%20%22https%3A//unblocked-games.s3.amazonaws.com/games/2024/gm/moto-x3m/index.html%22%2C%20category%3A%20%22Strat%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22yt%20unblocker%20v2%22%2C%20url%3A%20%22https%3A//wewewer4fteeeeeee.github.io/ytunblockarv2/v2.html%22%2C%20category%3A%20%22Unblocked%20Stuff%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22Slow%20roads%22%2C%20url%3A%20%22https%3A//slowroads.io/%22%2C%20category%3A%20%22All%22%20%7D%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7B%20name%3A%20%22stickman%20ragdoll%22%2C%20url%3A%20%22https%3A//unblocked-games.s3.amazonaws.com/games/stickman-ragdoll/index.html%22%2C%20category%3A%20%22Stick%20Man%20Games%22%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5D%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20function%20showCategory%28category%29%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20const%20tabButtons%20%3D%20document.querySelectorAll%28%27.tab-button%27%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20const%20tabContents%20%3D%20document.querySelectorAll%28%27.tab-content%27%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20tabButtons.forEach%28btn%20%3D%3E%20btn.classList.remove%28%27active%27%29%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20tabContents.forEach%28content%20%3D%3E%20content.classList.remove%28%27active%27%29%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20document.querySelector%28%5C%60.tab-button%5Bonclick%3D%22showCategory%28%27%5C%24%7Bcategory%7D%27%29%22%5D%5C%60%29.classList.add%28%27active%27%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20document.getElementById%28%5C%60tab-%5C%24%7Bcategory%7D%5C%60%29.classList.add%28%27active%27%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20function%20createButtons%28%29%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20const%20categories%20%3D%20%5B%22All%22%2C%20%22Gun%20Games%22%2C%20%22Strat%20Games%22%2C%20%22Unblocked%20Stuff%22%2C%20%22Stick%20Man%20Games%22%2C%20%22Random%20Stuff%22%5D%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20categories.forEach%28category%20%3D%3E%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20let%20gamesToDisplay%20%3D%20buttons%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20%28category%20%21%3D%3D%20%22All%22%29%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gamesToDisplay%20%3D%20buttons.filter%28btnData%20%3D%3E%20btnData.category%20%3D%3D%3D%20category%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20const%20menu%20%3D%20document.getElementById%28%5C%60menu-%5C%24%7Bcategory%7D%5C%60%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20%28menu%29%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20gamesToDisplay.forEach%28btnData%20%3D%3E%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20const%20btn%20%3D%20document.createElement%28%22button%22%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20btn.textContent%20%3D%20btnData.name%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20btn.onclick%20%3D%20%28%29%20%3D%3E%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20const%20w%20%3D%20window.open%28%22about%3Ablank%22%2C%20%22_blank%22%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%20%28%21w%29%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20alert%28%22Please%20allow%20pop-ups%20for%20this%20site.%22%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20w.document.write%28%5C%60%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%21DOCTYPE%20html%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Chtml%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Chead%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Ctitle%3E%5C%24%7BbtnData.name%7D%3C/title%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cstyle%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20body%20%7B%20margin%3A%200%3B%20background-color%3A%20rgb%2820%2C%2020%2C%2020%29%3B%20overflow%3A%20hidden%3B%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20embed%20%7B%20display%3A%20block%3B%20width%3A%20100vw%3B%20height%3A%20100vh%3B%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/style%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/head%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cbody%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3Cembed%20src%3D%22%5C%24%7BbtnData.url%7D%22%20allowfullscreen%3D%22true%22%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/body%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C/html%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%5C%60%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20w.document.close%28%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20menu.appendChild%28btn%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20window.onload%20%3D%20createButtons%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3C%5C/script%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C/body%3E%0A%20%20%20%20%20%20%20%20%20%20%20%20%3C/html%3E%0A%20%20%20%20%20%20%20%20%60%3B%0A%0A%20%20%20%20%20%20%20%20function%20openLauncher%28%29%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20const%20w%20%3D%20window.open%28%22about%3Ablank%22%2C%20%22_blank%22%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20%28w%29%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20w.document.write%28mainPageContent%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20w.document.close%28%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20w.document.title%20%3D%20%22Made%20By%20Exploding%20Xdddddd%22%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%20else%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20alert%28%22Please%20allow%20pop-ups%20for%20this%20site%20to%20open%20the%20game%20launcher.%22%29%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%3C/script%3E%0A%3C/body%3E%0A%3C/html%3E'));
-</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Launcher Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: white;
+            background-color: rgb(20, 20, 20);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        button {
+            background-color: rgb(45, 45, 45);
+            color: white;
+            border-radius: 4px;
+            outline: none;
+            border: 2px solid rgb(45, 45, 45);
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+        }
+        button:hover {
+            background-color: rgb(25, 25, 25);
+            border-color: rgb(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <p>CLANKERRRRRRRRRRRRR</p>
+    <button onclick="openLauncher()">Click to GOON AUHGHGH</button>
+    <script>
+const mainPageContent = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>Made By Exploding Xdddddd</title>
+                <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+                <style>
+                    body {
+                        font-family: 'Nunito', sans-serif;
+                        color: white;
+                        background-color: rgb(20, 20, 20);
+                        margin: 0;
+                        padding: 25px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: flex-start;
+                        min-height: 100vh;
+                        box-sizing: border-box;
+                    }
+                    #launcher-container {
+                        width: 100%;
+                        max-width: 900px;
+                        padding: 25px;
+                        box-sizing: border-box;
+                    }
+                    .menu-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                        gap: 15px;
+                        padding: 15px 0;
+                    }
+                    button {
+                        background-color: rgb(45, 45, 45);
+                        color: white;
+                        border-radius: 4px;
+                        outline: none;
+                        border: 2px solid rgb(45, 45, 45);
+                        padding: 20px;
+                        font-size: 16px;
+                        cursor: pointer;
+                        transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+                        text-align: center;
+                        word-wrap: break-word;
+                    }
+                    button:hover {
+                        background-color: rgb(25, 25, 25);
+                        border-color: rgb(255, 255, 255, 0.2);
+                        transform: scale(1.05);
+                    }
+                    #tab-buttons {
+                        display: flex;
+                        gap: 5px;
+                        justify-content: center;
+                        margin-bottom: 20px;
+                    }
+                    .tab-button {
+                        background-color: rgb(35, 35, 35);
+                        color: white;
+                        border: 1px solid rgb(50, 50, 50);
+                        padding: 10px 20px;
+                        cursor: pointer;
+                        border-bottom: none;
+                        border-radius: 4px 4px 0 0;
+                        transition: background-color 0.2s;
+                    }
+                    .tab-button:hover {
+                        background-color: rgb(45, 45, 45);
+                    }
+                    .tab-button.active {
+                        background-color: rgb(20, 20, 20);
+                        border: 1px solid rgb(50, 50, 50);
+                        border-bottom: 1px solid transparent;
+                    }
+                    .tab-content {
+                        display: none;
+                    }
+                    .tab-content.active {
+                        display: block;
+                    }
+                </style>
+            </head>
+            <body>
+                <div id="launcher-container">
+                    <div id="tab-buttons">
+                        <button class="tab-button active" onclick="showCategory('All')">All</button>
+                        <button class="tab-button" onclick="showCategory('Gun Games')">Gun Games</button>
+                        <button class="tab-button" onclick="showCategory('Strat Games')">Strat Games</button>
+                        <button class="tab-button" onclick="showCategory('Unblocked Stuff')">Unblocked Stuff</button>
+                        <button class="tab-button" onclick="showCategory('Stick Man Games')">Stick Man Games</button>
+                        <button class="tab-button" onclick="showCategory('Random Stuff')">Random Stuff</button>                     
+                    </div>
+                    <div id="games-container">
+                        <div id="tab-All" class="tab-content active">
+                            <div id="menu-All" class="menu-grid"></div>
+                        </div>
+                        <div id="tab-Random Stuff" class="tab-content">
+                            <div id="menu-Random Stuff" class="menu-grid"></div>
+                        </div>
+                        <div id="tab-Gun Games" class="tab-content">
+                            <div id="menu-Gun Games" class="menu-grid"></div>
+                        </div>
+                        <div id="tab-Strat Games" class="tab-content">
+                            <div id="menu-Strat Games" class="menu-grid"></div>
+                        </div>
+                        <div id="tab-Unblocked Stuff" class="tab-content">
+                            <div id="menu-Unblocked Stuff" class="menu-grid"></div>
+                        </div>
+                        <div id="tab-Stick Man Games" class="tab-content">
+                            <div id="menu-Stick Man Games" class="menu-grid"></div>
+                        </div>
+                        </div>
+                <script>
+                    const buttons = [
+                        { name: "GunBlood", url: "https://cbgamesdev.github.io/chilibowlflash/gunblood.html", category: "Gun Games" },
+                        { name: "geomatry dash", url: "https://cbgamesdev.github.io/chilibowlflash/geomatrydash/geodash1.html", category: "Random Stuff" },
+                        { name: "run 3", url: "https://cbgamesdev.github.io/chilibowlflash/run3/index.html", category: "Random Stuff" },
+                        { name: "Stick Man Goon", url: "https://stickmanhook2.org/game/stickman-hook/", category: "Stick Man Games" },
+                        { name: "Vex", url: "https://wewewer4fteeeeeee.github.io/gammess/vex.html", category: "Stick Man Games" },
+                        { name: "Block Blast", url: "https://cbgamesdev.github.io/chilibowlflash/blockblast/index.html", category: "Strat Games" },
+                        { name: "Unblocker", url: "https://wewewer4fteeeeeee.github.io/riz/dih.html", category: "Unblocked Stuff" },
+                        { name: "MineCraft Tower Defense", url: "https://wewewer4fteeeeeee.github.io/gammess/minecraftdih.html", category: "Random Stuff" },
+                        { name: "Learn To Fly 2", url: "https://wewewer4fteeeeeee.github.io/gammess/learn2goon.html", category: "Strat Games" },
+                        { name: "Portal Flash", url: "https://wewewer4fteeeeeee.github.io/gammess/Portal.html", category: "Random Stuff" },
+                        { name: "Age Of War", url: "https://wewewer4fteeeeeee.github.io/gammess/ageofsum.html", category: "Strat Games" },
+                        { name: "Meat Boy", url: "https://wewewer4fteeeeeee.github.io/gammess/meatjerk.html", category: "Strat Games" },
+                        { name: "SpaceBar Clicker", url: "https://wewewer4fteeeeeee.github.io/gammess/spacebargooner.html", category: "Random Stuff" },
+                        { name: "Slope", url: "https://wewewer4fteeeeeee.github.io/gammess/Slope.html", category: "Strat Games" },
+                        { name: "Paper.Io 2", url: "https://ubv4l.neocities.org/projects/paperio2/", category: "Strat Games" },
+                        { name: "Youtube unblocked Made By Me", url: "https://wewewer4fteeeeeee.github.io/dih/dih.html", category: "Unblocked Stuff" },
+                        { name: "Subway Surfers", url: "https://kingedu112.github.io/g26/class-444/", category: "Strat Games" },
+                        { name: "Gun Spin", url: "https://coolmathsgames.github.io/c/gunspin/", category: "Strat Games" },
+                        { name: "Hole.io", url: "https://kevin.games/hole/", category: "Strat Games" },
+                        { name: "1v1 lol", url: "https://1v1lol.gitlab.io/1v1-lol-2/", category: "Strat Games" },
+                        { name: "Stickman Fight", url: "https://labgstore311.github.io/g50/class-6", category: "Stick Man Games" },
+                        { name: "ragdoll archers", url: "https://bitlifeonline.github.io/ragdoll-archers/", category: "Stick Man Games" },
+                        { name: "moto x3m", url: "https://unblocked-games.s3.amazonaws.com/games/2024/gm/moto-x3m/index.html", category: "Strat Games" },
+                        { name: "yt unblocker v2", url: "https://wewewer4fteeeeeee.github.io/ytunblockarv2/v2.html", category: "Unblocked Stuff" },
+                        { name: "Slow roads", url: "https://slowroads.io/", category: "All" },                        
+                        { name: "stickman ragdoll", url: "https://unblocked-games.s3.amazonaws.com/games/stickman-ragdoll/index.html", category: "Stick Man Games" },
+                    ];
+                    function showCategory(category) {
+                        const tabButtons = document.querySelectorAll('.tab-button');
+                        const tabContents = document.querySelectorAll('.tab-content');
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        tabContents.forEach(content => content.classList.remove('active'));
+                        document.querySelector(\`.tab-button[onclick="showCategory('\${category}')"]\`).classList.add('active');
+                        document.getElementById(\`tab-\${category}\`).classList.add('active');
+                    }
+                    function createButtons() {
+                        const categories = ["All", "Gun Games", "Strat Games", "Unblocked Stuff", "Stick Man Games", "Random Stuff"];
+                        categories.forEach(category => {
+                            let gamesToDisplay = buttons;
+                            if (category !== "All") {
+                                gamesToDisplay = buttons.filter(btnData => btnData.category === category);
+                            }
+                            const menu = document.getElementById(\`menu-\${category}\`);
+                            if (menu) {
+                                gamesToDisplay.forEach(btnData => {
+                                    const btn = document.createElement("button");
+                                    btn.textContent = btnData.name;
+                                    btn.onclick = () => {
+                                        const w = window.open("about:blank", "_blank");
+                                        if (!w) {
+                                            alert("Please allow pop-ups for this site.");
+                                            return;
+                                        }
+                                        w.document.write(\`
+                                            <!DOCTYPE html>
+                                            <html>
+                                                <head>
+                                                    <title>\${btnData.name}</title>
+                                                    <style>
+                                                        body { margin: 0; background-color: rgb(20, 20, 20); overflow: hidden; }
+                                                        embed { display: block; width: 100vw; height: 100vh; }
+                                                    </style>
+                                                </head>
+                                                <body>
+                                                    <embed src="\${btnData.url}" allowfullscreen="true">
+                                                </body>
+                                            </html>
+                                        \`);
+                                        w.document.close();
+                                    };
+                                    menu.appendChild(btn);
+                                });
+                            }
+                        });
+                    }
+                    window.onload = createButtons;
+                <\/script>
+            </body>
+            </html>
+        `;
+
+        function openLauncher() {
+            const w = window.open("about:blank", "_blank");
+            if (w) {
+                w.document.write(mainPageContent);
+                w.document.close();
+                w.document.title = "Made By Exploding Xdddddd";
+            } else {
+                alert("Please allow pop-ups for this site to open the game launcher.");
+            }
+        }
+    </script>
+</body>
+</html>
