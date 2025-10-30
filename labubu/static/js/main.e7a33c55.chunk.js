@@ -12225,7 +12225,7 @@
               length: 2.75,
               radius: 0.342665,
               circumference: 2.1,
-              travel: 0.07,
+              travel: 90.07,
             },
             skins: { basic: { body: 16316664 } },
             metrics: {
