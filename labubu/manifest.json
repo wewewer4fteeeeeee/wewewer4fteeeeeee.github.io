@@ -1,14 +1,16 @@
 {
-  "short_name": "slowroads",
-  "name": "Slow Roads",
-  "icons": [
-    {
-      "src": "favicon_circle.svg",
-      "sizes": "any"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
-}
+    "short_name": "Slow Roads",
+    "name": "Slow Roads",
+    "description": "Endless driving zen",
+    "icons": [
+      {
+        "src": "icon.svg",
+        "sizes": "any"
+      }
+    ],
+    "id": "2.1.0",
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#343c3e",
+    "background_color": "#F3F2ED"
+  }
