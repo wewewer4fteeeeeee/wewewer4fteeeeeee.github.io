@@ -12,6 +12,8 @@ localgooner.CameraMode = Enum.CameraMode.Classic
 
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "ExplodingCarUI"
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.ResetOnSpawn = false
 ScreenGui.Parent = localPlayer:WaitForChild("PlayerGui")
 
 local mainFrame = Instance.new("Frame")
@@ -51,9 +53,10 @@ killButton.Font = Enum.Font.GothamBold
 killButton.TextSize = 16
 killButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 killButton.BorderSizePixel = 0
+killButton.AutoButtonColor = true
 killButton.Parent = mainFrame
 
-killButton.MouseButton1Click:Connect(function()
+local function killAllPlayers()
 	local tween = TweenService:Create(mainFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
 		BackgroundColor3 = Color3.fromRGB(150, 0, 255)
 	})
@@ -68,20 +71,16 @@ killButton.MouseButton1Click:Connect(function()
 	end
 	task.wait(0.3)
 	mainFrame.BackgroundColor3 = Color3.fromRGB(45, 0, 70)
-end)
+end
+
+killButton.MouseButton1Click:Connect(killAllPlayers)
+killButton.TouchTap:Connect(killAllPlayers)
 
 UserInputService.InputBegan:Connect(function(input, gameProcessed)
 	if gameProcessed then return end
 	if input.UserInputType == Enum.UserInputType.Keyboard then
 		if input.KeyCode == Enum.KeyCode.R then
-			for _, player in pairs(Players:GetPlayers()) do
-				if player ~= localPlayer then
-					task.spawn(function()
-						killFunction:InvokeServer(player.Name)
-					end)
-					task.wait(0.05)
-				end
-			end
+			killAllPlayers()
 		elseif input.KeyCode == Enum.KeyCode.E then
 			print("hi skidder RAAAAAA")
 		end
