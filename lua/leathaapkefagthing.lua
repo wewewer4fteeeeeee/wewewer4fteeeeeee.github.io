@@ -21,7 +21,7 @@ mainFrame.Position = UDim2.new(0, 20, 0.5, -40)
 mainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 70)
 mainFrame.BorderSizePixel = 2
 mainFrame.Active = true
-mainFrame.Draggable = true
+mainFrame.Draggable = false
 mainFrame.BackgroundTransparency = 1
 mainFrame.ZIndex = 10
 
@@ -48,7 +48,7 @@ killButton.Position = UDim2.new(0, 10, 1, -35)
 killButton.BackgroundColor3 = Color3.fromRGB(100, 0, 160)
 killButton.Text = "Kill All"
 killButton.Font = Enum.Font.GothamBold
-killButton.TextSize = 14
+killButton.TextSize = 16
 killButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 killButton.BorderSizePixel = 0
 
