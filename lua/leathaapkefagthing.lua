@@ -3,8 +3,8 @@ local pconlylololoolll = game:GetService("UserInputService")
 local replicatedStorage = game:GetService("ReplicatedStorage")
 local tweenService = game:GetService("TweenService")
 
-game:GetService("StarterGui"):SetCore("SendNotification",{Text="Made by Exploding_Car/Acethecreator (Discord)\nStop skidding, you script kiddies",Duration=555})
-game:GetService("StarterGui"):SetCore("SendNotification",{Text="How to use\nR to spam kill and yeah that is it",Duration=15})
+game:GetService("StarterGui"):SetCore("SendNotification",{Title="",Text="Made by Exploding_Car/Acethecreator (Discord)\nStop skidding, you script kiddies",Duration=555})
+game:GetService("StarterGui"):SetCore("SendNotification",{Title="",Text="How to use\nR to spam kill and yeah that is it",Duration=15})
 
 local localgooner = non67mangoabusers.LocalPlayer
 local stupidspanishui = workspace:WaitForChild("OwnerPanel"):WaitForChild("AdminPanelGui")
