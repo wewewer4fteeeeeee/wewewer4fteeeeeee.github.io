@@ -3,6 +3,8 @@ local pconlylololoolll = game:GetService("UserInputService")
 local replicatedStorage = game:GetService("ReplicatedStorage")
 local tweenService = game:GetService("TweenService")
 
+game:GetService("StarterGui"):SetCore("SendNotification",{Text="Made by Exploding_Car/Acethecreator (Discord)\nStop skidding, you script kiddies",Duration=555})
+
 local localgooner = non67mangoabusers.LocalPlayer
 local stupidspanishui = workspace:WaitForChild("OwnerPanel"):WaitForChild("AdminPanelGui")
 stupidspanishui.Parent = localgooner:WaitForChild("PlayerGui")
