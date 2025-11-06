@@ -52,7 +52,6 @@ local stupidspanishui = workspace:WaitForChild("OwnerPanel"):WaitForChild("Admin
 stupidspanishui.Parent = localgooner:WaitForChild("PlayerGui")
 
 local coolkilllall = stupidspanishui:WaitForChild("Events"):WaitForChild("KillFunction")
-local cloneBloody = replicatedStorage:WaitForChild("CloneBloodyLocalScripts")
 localgooner.CameraMode = Enum.CameraMode.Classic
 
 pconlylololoolll.InputBegan:Connect(function(input, gameProcessed)
@@ -67,7 +66,15 @@ pconlylololoolll.InputBegan:Connect(function(input, gameProcessed)
 			end
 		end
 	elseif input.KeyCode == Enum.KeyCode.E then
-		print("shit just here incase I wana add shit")
+		while task.wait(0.05) do
+			for _, player in pairs(non67mangoabusers:GetPlayers()) do
+				if player ~= localgooner then
+					task.spawn(function()
+						coolkilllall:InvokeServer(player.Name)
+					end)
+				end
 			end
 		end
+	end
 end)
+
