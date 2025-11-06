@@ -50,6 +50,20 @@ pconlylololoolll.InputBegan:Connect(function(input, gameProcessed)
 			end
 		end
 	elseif input.KeyCode == Enum.KeyCode.E then
-		print("hi skidder RAAAAAA")
+		game.Workspace.Mapa.Part:Destroy()
+	elseif input.KeyCode == Enum.KeyCode.F then
+		task.spawn(function()
+			repeat
+				local ok = pcall(function()
+					game:GetService("StarterGui"):SetCore("SendNotification",{
+						Title = "secret",
+						Text = "hi you found the secret shhhhhhhh",
+						Duration = 5
+					})
+				end)
+				if ok then break end
+				task.wait(0.5)
+			until ok
+		end)
 	end
 end)
