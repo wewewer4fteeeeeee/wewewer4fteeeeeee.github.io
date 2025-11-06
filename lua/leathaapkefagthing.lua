@@ -50,7 +50,7 @@ pconlylololoolll.InputBegan:Connect(function(input, gameProcessed)
 			end
 		end
 	elseif input.KeyCode == Enum.KeyCode.E then
-		game.Workspace.Mapa.Part:Destroy()
+		print("shit just here incase I wana add shit")
 	elseif input.KeyCode == Enum.KeyCode.F then
 		task.spawn(function()
 			repeat
