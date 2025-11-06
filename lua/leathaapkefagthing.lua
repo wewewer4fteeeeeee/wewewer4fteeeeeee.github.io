@@ -28,6 +28,23 @@ task.spawn(function()
         if ok then break end
         task.wait(0.5)
     until ok
+	end
+end)
+
+setclipboard("discord.gg/FGRmuKR2")
+task.wait(1.0)
+task.spawn(function()
+    repeat
+        local ok = pcall(function()
+            game:GetService("StarterGui"):SetCore("SendNotification",{
+                Title = "",
+                Text="Discord Copied Join For More Scripts",
+                Duration = 555
+            })
+        end)
+        if ok then break end
+        task.wait(0.5)
+    until ok
 end)
 
 local localgooner = non67mangoabusers.LocalPlayer
@@ -51,19 +68,6 @@ pconlylololoolll.InputBegan:Connect(function(input, gameProcessed)
 		end
 	elseif input.KeyCode == Enum.KeyCode.E then
 		print("shit just here incase I wana add shit")
-	elseif input.KeyCode == Enum.KeyCode.F then
-		task.spawn(function()
-			repeat
-				local ok = pcall(function()
-					game:GetService("StarterGui"):SetCore("SendNotification",{
-						Title = "secret",
-						Text = "hi you found the secret shhhhhhhh",
-						Duration = 5
-					})
-				end)
-				if ok then break end
-				task.wait(0.5)
-			until ok
-		end)
-	end
+			end
+		end
 end)
