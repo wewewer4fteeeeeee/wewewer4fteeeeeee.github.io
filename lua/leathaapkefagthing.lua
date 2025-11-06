@@ -54,6 +54,8 @@ stupidspanishui.Parent = localgooner:WaitForChild("PlayerGui")
 local coolkilllall = stupidspanishui:WaitForChild("Events"):WaitForChild("KillFunction")
 localgooner.CameraMode = Enum.CameraMode.Classic
 
+local edging = false
+
 pconlylololoolll.InputBegan:Connect(function(input, gameProcessed)
 	if gameProcessed then return end
 	if input.KeyCode == Enum.KeyCode.R then
@@ -66,14 +68,20 @@ pconlylololoolll.InputBegan:Connect(function(input, gameProcessed)
 			end
 		end
 	elseif input.KeyCode == Enum.KeyCode.E then
-		while task.wait(0.05) do
-			for _, player in pairs(non67mangoabusers:GetPlayers()) do
-				if player ~= localgooner then
-					task.spawn(function()
-						coolkilllall:InvokeServer(player.Name)
-					end)
+		edging = not edging
+		if edging then
+			task.spawn(function()
+				while edging do
+					for _, player in pairs(non67mangoabusers:GetPlayers()) do
+						if player ~= localgooner then
+							task.spawn(function()
+								coolkilllall:InvokeServer(player.Name)
+							end)
+						end
+					end
+					task.wait(0.05)
 				end
-			end
+			end)
 		end
 	end
 end)
