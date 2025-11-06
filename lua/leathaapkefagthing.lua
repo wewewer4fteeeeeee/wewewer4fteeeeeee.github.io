@@ -21,9 +21,9 @@ task.spawn(function()
 	repeat
 		local ok = pcall(function()
 			game:GetService("StarterGui"):SetCore("SendNotification",{
-				Title = "",
-				Text = "How to use\nR to spam kill and yeah that is it",
-				Duration = 555
+				Title = "fuckass controls",
+				Text = "How to use\nR to kill\nE to loop kill",
+				Duration = 17
 			})
 		end)
 		if ok then break end
@@ -39,7 +39,7 @@ task.spawn(function()
 			game:GetService("StarterGui"):SetCore("SendNotification",{
 				Title = "",
 				Text = "Discord Copied Join For More Scripts",
-				Duration = 555
+				Duration = 17
 			})
 		end)
 		if ok then break end
