@@ -163,6 +163,7 @@
       { name: "Stick Man Goon", url: "https://stickmanhook2.org/game/stickman-hook/", category: "Stick Man Games" },
       { name: "Vex", url: "https://wewewer4fteeeeeee.github.io/gammess/vex.html", category: "Stick Man Games" },
       { name: "Block Blast", url: "https://cbgamesdev.github.io/chilibowlflash/blockblast/index.html", category: "Strat Games" },
+      { name: "Unblocker", url: "https://wewewer4fteeeeeee.github.io/riz/dih.html", category: "Unblocked Stuff" },
       { name: "MineCraft Tower Defense", url: "https://wewewer4fteeeeeee.github.io/gammess/minecraftdih.html", category: "Random Stuff" },
       { name: "Learn To Fly 2", url: "https://wewewer4fteeeeeee.github.io/gammess/learn2goon.html", category: "Strat Games" },
       { name: "Portal Flash", url: "https://wewewer4fteeeeeee.github.io/gammess/Portal.html", category: "Random Stuff" },
@@ -171,6 +172,7 @@
       { name: "SpaceBar Clicker", url: "https://wewewer4fteeeeeee.github.io/gammess/spacebargooner.html", category: "Random Stuff" },
       { name: "Slope", url: "https://wewewer4fteeeeeee.github.io/gammess/Slope.html", category: "Strat Games" },
       { name: "Paper.Io 2", url: "https://ubv4l.neocities.org/projects/paperio2/", category: "Strat Games" },
+      { name: "Youtube unblocked Made By Me", url: "https://wewewer4fteeeeeee.github.io/dih/dih.html", category: "Unblocked Stuff" },
       { name: "Subway Surfers", url: "https://kingedu112.github.io/g26/class-444/", category: "Strat Games" },
       { name: "Gun Spin", url: "https://coolmathsgames.github.io/c/gunspin/", category: "Strat Games" },
       { name: "Hole.io", url: "https://kevin.games/hole/", category: "Strat Games" },
@@ -178,7 +180,7 @@
       { name: "Stickman Fight", url: "https://labgstore311.github.io/g50/class-6", category: "Stick Man Games" },
       { name: "ragdoll archers", url: "https://bitlifeonline.github.io/ragdoll-archers/", category: "Stick Man Games" },
       { name: "moto x3m", url: "https://unblocked-games.s3.amazonaws.com/games/2024/gm/moto-x3m/index.html", category: "Strat Games" },
-      { name: "yt unblocker", url: "https://wewewer4fteeeeeee.github.io/ytunblockarv2/v2.html", category: "Unblocked Stuff" },
+      { name: "yt unblocker v2", url: "https://wewewer4fteeeeeee.github.io/ytunblockarv2/v2.html", category: "Unblocked Stuff" },
       { name: "Slow roads", url: "https://slowroads.io/", category: "All" },
       { name: "Slow roads modded cause im cool", url: "https://wewewer4fteeeeeee.github.io/labubu/", category: "All" },
       { name: "stickman ragdoll", url: "https://unblocked-games.s3.amazonaws.com/games/stickman-ragdoll/index.html", category: "Stick Man Games" },
@@ -217,19 +219,16 @@
         }
       });
     }
-document.getElementById('cloakHistoryBtn').onclick = () => {
-  const baseUrl = window.location.href.split('#')[0].split('?')[0]; // clean base URL
-  const tabName = "NO TABS BOZO";
 
-  document.title = tabName;
-
-  for (let i = 1; i <= 1000; i++) {
-    const fakeUrl = `${baseUrl}?flood=${i}`;
-    history.pushState({}, tabName, fakeUrl);
-  }
-
-  alert(`Done lolz this school sucks also mr stupid horse or whatever you annoying asl".`);
-};
+    document.getElementById('cloakHistoryBtn').onclick = () => {
+      let done = false;
+      const url = window.location.href;
+      for(let i = 1; i <= 1000; i++) {
+        history.pushState(0, 0, i === 1000 ? url : i.toString());
+        if(i === 1000) done = true;
+      }
+      if(done) alert(`Done Lolz if you think spying on students is okay this is why I made this mr stupid horse you annoying asl also if people are on games you are js boring fn`);
+    };
 
     window.onload = createButtons;
   </script>
