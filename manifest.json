@@ -1,14 +1,8 @@
 [
   {
-    "name": "MyDevApp",
-    "version": "1.0.3",
-    "url": "https://your-host.com/apks/mydevapp-1.0.3.apk",
-    "filename": "mydevapp-1.0.3.apk"
+    "name": "Tech tree betaa",
+    "version": "0.20.1.697_d3403629f",
+    "url": "https://cdn.discordapp.com/attachments/1495512906681421994/1495525447482736670/patched_signed_signed.apk?ex=69e6901c&is=69e53e9c&hm=83b75f837e2cbe776d71fa5e7b6633fb8f5652fbb51296393031ac0a92ccfda7&",
+    "filename": "patched_signed_signed.apk"
   },
-  {
-    "name": "TestBuild",
-    "version": "0.9.1",
-    "url": "https://your-host.com/apks/testbuild-0.9.1.apk",
-    "filename": "testbuild-0.9.1.apk"
-  }
 ]
