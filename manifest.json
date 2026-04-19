@@ -1,0 +1,14 @@
+[
+  {
+    "name": "MyDevApp",
+    "version": "1.0.3",
+    "url": "https://your-host.com/apks/mydevapp-1.0.3.apk",
+    "filename": "mydevapp-1.0.3.apk"
+  },
+  {
+    "name": "TestBuild",
+    "version": "0.9.1",
+    "url": "https://your-host.com/apks/testbuild-0.9.1.apk",
+    "filename": "testbuild-0.9.1.apk"
+  }
+]
