@@ -35,6 +35,12 @@
     "url": "https://cdn.discordapp.com/attachments/1450479657081110628/1495572112717516983/patched.apk?ex=69e6bb92&is=69e56a12&hm=1a6470c6599d9a321dd2dd80568034d587409892523ac0fd4dfd1dccc31010ce&",
     "filename": "pinataupd.apk"
   },
+    {
+    "name": "easter update",
+    "version": "1.18.3.1197",
+    "url": "https://cdn.discordapp.com/attachments/1450479657081110628/1495918330463391774/patched.apk?ex=69e7fe02&is=69e6ac82&hm=32bc699af6c40571c7614d7657620c4e5c00de6784f77567c8e28469b2d44008&",
+    "filename": "easter.apk"
+  },
   {
     "name": "Tech tree betaa",
     "version": "0.20.1.697",
